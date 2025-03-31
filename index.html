@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DanZ-AIO Champions - LoL UI Style</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); /* Using Roboto as a fallback for LoL fonts */
+
+        :root {
+            /* League of Legends UI Inspired Palette (Based on Style Guide) */
+            --lol-bg-deep: #02141f;         /* Deepest background color */
+            --lol-bg-container: #031214;    /* Main container background */
+            --lol-bg-element: #1E282D;     /* Background for elements like info sections */
+            --lol-gold-primary: #C8AA6E;    /* Main Gold Accent (Borders, Titles) */
+            --lol-gold-secondary: #785A28;   /* Darker Gold (Less prominent borders/details) */
+            --lol-gold-highlight: #F0E6D2;   /* Lightest Gold/Off-white (Text, Highlights) */
+            --lol-gold-hover: #C89B3C;      /* Brighter Gold (Hover states) */
+            --lol-teal-accent: #0AC8B9;     /* Teal accent */
+            --lol-border: #463714;         /* Dark, desaturated gold for subtle borders */
+            --lol-text-primary: var(--lol-gold-highlight);
+            --lol-text-secondary: #A09B8C;   /* Muted grey/gold text */
+            --lol-button-bg: #0A323C;      /* Button background (dark teal/blue) */
+            --lol-button-border: var(--lol-gold-primary); /* Gold border for buttons */
+            --lol-button-hover-bg: #1c505e; /* Slightly lighter hover bg */
+            --lol-button-hover-border: var(--lol-gold-hover); /* Brighter gold border on hover */
+            --lol-button-text: var(--lol-gold-highlight);
+            --lol-link-color: #87CEFA;      /* Keeping a distinct link blue, but could be teal/gold */
+            --lol-link-hover: #ADD8E6;
+            --modal-overlay-bg: rgba(10, 20, 40, 0.85); /* Semi-transparent dark blue overlay */
+            --modal-bg: var(--lol-bg-container);
+            --modal-border: var(--lol-gold-primary);
+        }
+
+        body {
+            background-color: var(--lol-bg-deep);
+            color: var(--lol-text-secondary); /* Default text color */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 30px; /* Added padding around the body */
+        }
+
+        .lol-ui-container {
+            max-width: 850px; /* Slightly wider */
+            margin: 20px auto;
+            background-color: var(--lol-bg-container);
+            border: 1px solid var(--lol-gold-secondary); /* Darker gold border for main container */
+            border-radius: 0px; /* Sharp corners common in LoL UI */
+            padding: 30px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Deeper shadow */
+            position: relative; /* Needed for potential absolute positioning inside */
+            z-index: 1; /* Ensure content is above potential body background elements */
+        }
+
+        .main-title {
+            color: var(--lol-gold-primary);
+            text-align: left;
+            font-size: 28px; /* Larger title */
+            font-weight: 500; /* Medium weight */
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--lol-gold-primary); /* Sharp gold underline */
+            letter-spacing: 0.5px;
+        }
+
+        .champion-section {
+            margin-bottom: 25px;
+        }
+
+        .section-label {
+            color: var(--lol-gold-primary); /* Use primary gold for labels */
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 18px;
+            display: block;
+            text-transform: uppercase; /* Uppercase labels are common */
+            letter-spacing: 1px;
+        }
+
+        .champion-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Consistent gap */
+            margin-bottom: 25px;
+        }
+
+        .champion-icons img {
+            width: 72px; /* Slightly larger icons */
+            height: 72px;
+            border: 2px solid var(--lol-border); /* Darker, subtle gold border */
+            border-radius: 0px; /* Sharp corners */
+            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            cursor: pointer; /* Indicate clickable */
+        }
+
+        .champion-icons img:hover {
+            transform: scale(1.08); /* Slightly larger pop */
+            border-color: var(--lol-gold-hover); /* Brighter gold border on hover */
+        }
+
+        hr.section-separator {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--lol-gold-secondary), transparent); /* Faded gold line */
+            margin: 35px 0;
+        }
+
+        /* Info Sections (Changelogs, Feedback) */
+        .info-section {
+           /* background-color: var(--lol-bg-element); /* Use the element background color */
+           /* Using the specific dark grey from the image for changelogs */
+            border: 1px solid var(--lol-border); /* Consistent dark gold border */
+            border-radius: 0px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .info-section h4 {
+            color: var(--lol-gold-primary);
+            font-size: 20px; /* Match section label size */
+            font-weight: 600; /* Slightly bolder */
+            margin-top: 0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--lol-gold-secondary); /* Dark gold underline */
+            text-transform: uppercase; /* Uppercase headings */
+            letter-spacing: 1px;
+            display: inline-block; /* Make underline only span text width */
+        }
+
+        /* --- REFINED CHANGELOGS STYLES --- */
+        .info-section.changelogs {
+            background-color: #1E2328; /* Specific Dark Grey/Blue from screenshot */
+            border-color: var(--lol-border); /* Overriding potential default */
+        }
+
+        .info-section.changelogs h4 {
+             border-bottom: 1px solid var(--lol-gold-primary); /* Gold underline for this specific header */
+             margin-bottom: 15px; /* Space below heading */
+             padding-bottom: 8px; /* Space below text before line */
+             letter-spacing: 1.5px; /* More spacing for uppercase title */
+        }
+
+        .changelogs ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0;
+            margin-top: 10px; /* Add some space between heading line and list */
+        }
+
+        .changelogs li {
+            color: var(--lol-gold-highlight); /* #F0E6D2 - Lightest gold for the main text */
+            font-size: 15px;
+            line-height: 1.7; /* Adjust line spacing */
+            margin-bottom: 10px; /* Space between list items */
+            padding-left: 28px; /* Increase padding to make space for the custom bullet */
+            position: relative;
+        }
+
+        .changelogs li::before {
+            /* Using ◆ as an approximation for the diamond bullet */
+            content: "◆"; /* Diamond character */
+            position: absolute;
+            left: 5px; /* Position bullet */
+            top: 1px;  /* Fine-tune vertical alignment */
+            color: var(--lol-gold-primary); /* #C8AA6E - Primary gold for the bullet */
+            font-size: 1.1em; /* Make bullet slightly larger */
+            font-weight: normal; /* Ensure bullet isn't bolded if parent is */
+            line-height: 1; /* Prevent affecting li line height */
+        }
+
+         .changelogs li strong {
+            /* The "Cassiopeia:", "Farm Modes:" part */
+            font-weight: 700; /* Bold */
+            color: var(--lol-gold-highlight); /* Same light gold as the rest of the text */
+         }
+        /* --- END REFINED CHANGELOGS STYLES --- */
+
+
+        /* Feedback Section Styling */
+         .info-section.feedback {
+             background-color: var(--lol-bg-element); /* Standard element background */
+         }
+
+        .feedback-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--lol-border); /* Subtle separator line */
+        }
+        .feedback-row:last-child {
+             border-bottom: none;
+             margin-bottom: 0;
+             padding-bottom: 0;
+        }
+
+        .feedback-label {
+            color: var(--lol-gold-primary); /* Gold label */
+            font-weight: 500;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-size: 15px;
+        }
+
+        .feedback-link {
+            color: var(--lol-link-color); /* Standard link blue */
+            text-decoration: none;
+            word-break: break-all;
+            margin-right: 15px;
+            flex-grow: 1;
+            transition: color 0.2s ease;
+            font-size: 14px;
+        }
+         .feedback-link:hover {
+            color: var(--lol-link-hover); /* Lighter blue on hover */
+            text-decoration: underline;
+        }
+
+        /* Button Styling (LoL Inspired) */
+        .copy-button {
+            background-color: var(--lol-button-bg);
+            color: var(--lol-button-text);
+            border: 1px solid var(--lol-button-border); /* Gold border */
+            padding: 8px 16px; /* More padding */
+            border-radius: 2px; /* Slight rounding */
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase; /* Uppercase button text */
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .copy-button:hover {
+            background-color: var(--lol-button-hover-bg);
+            border-color: var(--lol-gold-hover); /* Brighter gold border */
+            color: #ffffff; /* Slightly brighter text on hover */
+        }
+
+        .copy-button:active {
+             background-color: var(--lol-button-bg);
+             border-color: var(--lol-gold-primary);
+             filter: brightness(0.9); /* Slightly darken on click */
+        }
+        .copy-button:disabled { /* Style for when 'Copied!' shows */
+            background-color: var(--lol-gold-secondary);
+            border-color: var(--lol-gold-secondary);
+            color: var(--lol-bg-element);
+            cursor: default;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed; /* Sit on top of everything */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay-bg); /* Semi-transparent background */
+            display: flex; /* Use flexbox for centering */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* High z-index */
+            opacity: 0; /* Hidden by default */
+            visibility: hidden; /* Hidden by default */
+            transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--modal-bg);
+            padding: 30px 40px;
+            border: 2px solid var(--modal-border); /* Prominent gold border */
+            border-radius: 0px; /* Sharp corners */
+            max-width: 600px; /* Max width of modal */
+            width: 90%; /* Responsive width */
+            position: relative; /* For positioning the close button */
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            color: var(--lol-text-primary);
+            max-height: 80vh; /* Max height */
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--lol-gold-primary);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--lol-gold-primary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .modal-close-button {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--lol-text-secondary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0 5px;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+
+        .modal-close-button:hover {
+            color: var(--lol-gold-highlight);
+        }
+
+        .modal-body p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: var(--lol-text-primary); /* Ensure body text is light */
+        }
+         .modal-body p:last-child {
+             margin-bottom: 0;
+         }
+         .modal-body strong {
+            color: var(--lol-gold-primary);
+            font-weight: 600;
+         }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="lol-ui-container">
+        <h2 class="main-title">DanZ-AIO Champions</h2>
+
+        <!-- Reworked Section -->
+        <div class="champion-section">
+            <span class="section-label">Reworked</span>
+            <div class="champion-icons">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal">
+            </div>
+        </div>
+
+        <hr class="section-separator">
+
+        <!-- New Section -->
+        <div class="champion-section">
+            <span class="section-label">New</span>
+            <div class="champion-icons">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/milio/hud/milio_square_0.png" alt="Milio" title="Milio">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/rell/hud/rell_square.png" alt="Rell" title="Rell">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/zeri/hud/zeri_square_0.png" alt="Zeri" title="Zeri">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/caitlyn/hud/caitlyn_square_0.png" alt="Caitlyn" title="Caitlyn">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/cassiopeia/hud/cassiopeia_square_0.png" alt="Cassiopeia" title="Cassiopeia">
+            </div>
+        </div>
+
+        <hr class="section-separator">
+
+        <!-- Supported Section -->
+        <div class="champion-section">
+            <span class="section-label">Supported</span>
+            <div class="champion-icons">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/thresh/hud/thresh_square.png" alt="Thresh" title="Thresh">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/blitzcrank/hud/steamgolem_square.png" alt="Blitzcrank" title="Blitzcrank">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/kogmaw/hud/kogmaw_square_0.png" alt="Kog'Maw" title="Kog'Maw">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/xerath/hud/xerath_square.png" alt="Xerath" title="Xerath">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/orianna/hud/oriana_square.png" alt="Orianna" title="Orianna">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/pyke/hud/pyke_square_0.png" alt="Pyke" title="Pyke">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/corki/hud/corki_square_0.png" alt="Corki" title="Corki">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/yone/hud/yone_square.png" alt="Yone" title="Yone">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/jinx/hud/jinx_square.png" alt="Jinx" title="Jinx">
+            </div>
+        </div>
+
+         <hr class="section-separator">
+
+        <!-- Beta Section -->
+        <div class="champion-section">
+            <span class="section-label">Beta</span>
+            <div class="champion-icons">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/annie/hud/annie_square.png" alt="Annie" title="Annie">
+            </div>
+        </div>
+
+
+        <!-- Changelogs Section -->
+        <div class="info-section changelogs">
+            <h4>Changelogs</h4>
+            <ul>
+                 <li><strong>Cassiopeia:</strong> Full Release! Smart Combo (QWER), Multi-Mode Farm/LH (Q/E)</li>
+                 <li><strong>Farm Modes:</strong> Q Only / Q Clear+E LH / E LH Only / Q+E Clear (Cycle: MMB)</li>
+                 <li><strong>Auto:</strong> Q Harass/CC, W Anti-Dash/CC, R CC/Interrupt/Multi, Flash+R Combo (T)</li>
+                 <li><strong>Extras:</strong> Semi-Cast Keys, Smart AA Block during Farm, Full Menu Config</li>
+            </ul>
+        </div>
+
+        <!-- Feedback Section -->
+        <div class="info-section feedback">
+            <h4>Feedback</h4>
+            <div class="feedback-row">
+                <span class="feedback-label">Discord:</span>
+                <a id="discord-link" href="https://dsc.gg/danzaio" target="_blank" class="feedback-link">https://dsc.gg/danzaio</a>
+                <button class="copy-button" onclick="copyToClipboard('discord-link')">Copy</button>
+            </div>
+            <div class="feedback-row">
+                <span class="feedback-label">Telegram:</span>
+                <a id="telegram-link" href="https://t.me/DanzAIO" target="_blank" class="feedback-link">https://t.me/DanzAIO</a>
+                <button class="copy-button" onclick="copyToClipboard('telegram-link')">Copy</button>
+            </div>
+        </div>
+
+    </div> <!-- End lol-ui-container -->
+
+    <!-- Modal Structure (Initially Hidden) -->
+    <div id="championModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalChampionName">Champion Name</h3>
+                <button id="closeModalButton" class="modal-close-button">×</button> <!-- × is the 'X' symbol -->
+            </div>
+            <div class="modal-body">
+                <p id="modalChampionInfo">
+                    This is where detailed information about the champion's integration with DanZ-AIO would go.
+                    <br><br>
+                    <strong>Supported Features:</strong>
+                    <ul>
+                        <li>Feature 1 (e.g., Combo Logic)</li>
+                        <li>Feature 2 (e.g., Auto Farm Settings)</li>
+                        <li>Feature 3 (e.g., Specific Skill Usage)</li>
+                    </ul>
+                    <br>
+                    <em>This is placeholder text. Actual content would be specific to the selected champion.</em>
+                </p>
+                <!-- You could add more specific sections here if needed -->
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Copy Button Logic ---
+        function copyToClipboard(elementId) {
+            const linkElement = document.getElementById(elementId);
+            if (!linkElement) return;
+            const textToCopy = linkElement.href;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = linkElement.parentElement.querySelector('.copy-button');
+                if(button){
+                     const originalText = button.textContent;
+                     button.textContent = 'Copied!';
+                     button.disabled = true;
+                     setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                     }, 1500);
+                }
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                 const button = linkElement.parentElement.querySelector('.copy-button');
+                 if(button){
+                     button.textContent = 'Failed';
+                      setTimeout(() => {
+                        button.textContent = 'Copy';
+                     }, 1500);
+                 }
+            });
+        }
+
+        // --- Modal Logic ---
+        const modalOverlay = document.getElementById('championModal');
+        const modalChampionName = document.getElementById('modalChampionName');
+        const modalChampionInfo = document.getElementById('modalChampionInfo'); // Reference to the paragraph for content
+        const closeModalButton = document.getElementById('closeModalButton');
+        const championImages = document.querySelectorAll('.champion-icons img');
+
+        // Function to open the modal
+        function openModal(championName, championInfoPlaceholder) {
+            modalChampionName.textContent = championName;
+            // Update the dummy text - you might customize this further
+            modalChampionInfo.innerHTML = `
+                Information about <strong>${championName}</strong> integration with DanZ-AIO.
+                <br><br>
+                <strong>Supported Features:</strong>
+                <ul>
+                    <li>Smart Combo Logic</li>
+                    <li>Automated Last Hitting / Wave Clear</li>
+                    <li>Skill Usage Configuration</li>
+                    <li>Auto Ignite/Smite (if applicable)</li>
+                </ul>
+                <br>
+                <em>Note: This is placeholder information. Refer to specific documentation for ${championName}.</em>`;
+            modalOverlay.classList.add('active'); // Show the modal
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modalOverlay.classList.remove('active'); // Hide the modal
+        }
+
+        // Add event listeners to all champion images
+        championImages.forEach(img => {
+            img.addEventListener('click', () => {
+                const championName = img.getAttribute('alt'); // Get name from alt text
+                // You could pass more specific dummy text here if needed
+                openModal(championName, "Placeholder details...");
+            });
+        });
+
+        // Add event listener for the close button
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Add event listener to close modal if clicking on the overlay background
+        modalOverlay.addEventListener('click', (event) => {
+            // Close only if the click is directly on the overlay, not the content inside
+            if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+    </script>
+
+</body>
+</html>
