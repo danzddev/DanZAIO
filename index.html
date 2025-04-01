@@ -5,50 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DanZ-AIO Champions - LoL UI Style (Refined)</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); /* Using Roboto as a fallback for LoL fonts */
 
         :root {
-            --lol-bg-deep: #02141f;
-            --lol-bg-container: #031214;
-            --lol-bg-element: #1E282D;
-            --lol-gold-primary: #C8AA6E;
-            --lol-gold-secondary: #785A28;
-            --lol-gold-highlight: #F0E6D2;
-            --lol-gold-hover: #C89B3C;
-            --lol-teal-accent: #0AC8B9;
-            --lol-border: #463714;
+            /* League of Legends UI Inspired Palette (Based on Style Guide) */
+            --lol-bg-deep: #02141f;         /* Deepest background color */
+            --lol-bg-container: #031214;    /* Main container background */
+            --lol-bg-element: #1E282D;     /* Background for elements like info sections */
+            --lol-gold-primary: #C8AA6E;    /* Main Gold Accent (Borders, Titles) */
+            --lol-gold-secondary: #785A28;   /* Darker Gold (Less prominent borders/details) */
+            --lol-gold-highlight: #F0E6D2;   /* Lightest Gold/Off-white (Text, Highlights) */
+            --lol-gold-hover: #C89B3C;      /* Brighter Gold (Hover states) */
+            --lol-teal-accent: #0AC8B9;     /* Teal accent */
+            --lol-border: #463714;         /* Dark, desaturated gold for subtle borders */
             --lol-text-primary: var(--lol-gold-highlight);
-            --lol-text-secondary: #A09B8C;
-            --lol-button-bg: #0A323C;
-            --lol-button-border: var(--lol-gold-primary);
-            --lol-button-hover-bg: #1c505e;
-            --lol-button-hover-border: var(--lol-gold-hover);
+            --lol-text-secondary: #A09B8C;   /* Muted grey/gold text */
+            --lol-button-bg: #0A323C;      /* Button background (dark teal/blue) */
+            --lol-button-border: var(--lol-gold-primary); /* Gold border for buttons */
+            --lol-button-hover-bg: #1c505e; /* Slightly lighter hover bg */
+            --lol-button-hover-border: var(--lol-gold-hover); /* Brighter gold border on hover */
             --lol-button-text: var(--lol-gold-highlight);
-            --lol-link-color: #87CEFA;
+            --lol-link-color: #87CEFA;      /* Keeping a distinct link blue, but could be teal/gold */
             --lol-link-hover: #ADD8E6;
-            --modal-overlay-bg: rgba(10, 20, 40, 0.88);
+            --modal-overlay-bg: rgba(10, 20, 40, 0.88); /* Slightly darker overlay */
             --modal-bg: var(--lol-bg-container);
             --modal-border: var(--lol-gold-primary);
         }
 
-        body { /* ... body styles from before ... */ }
-        .lol-ui-container { /* ... lol-ui-container styles from before ... */ }
-        .main-title { /* ... main-title styles from before ... */ }
-        .champion-section { /* ... champion-section styles from before ... */ }
-        .section-label { /* ... section-label styles from before ... */ }
+        body {
+            background-color: var(--lol-bg-deep);
+            color: var(--lol-text-secondary); /* Default text color */
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 24px; /* SCALED DOWN */
+        }
 
-        /* Champion Icon Container and Buttons */
-        .champion-icons {
-            display: grid; /* Changed to grid for better button alignment */
-            grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); /* Adjust minmax for icon+buttons */
-            gap: 16px; /* SCALED DOWN */
+        .lol-ui-container {
+            max-width: 680px; /* SCALED DOWN */
+            margin: 16px auto; /* SCALED DOWN */
+            background-color: var(--lol-bg-container);
+            border: 1px solid var(--lol-gold-secondary); /* Darker gold border for main container */
+            border-radius: 0px; /* Sharp corners common in LoL UI */
+            padding: 24px; /* SCALED DOWN */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Slightly adjusted shadow */
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            color: var(--lol-gold-primary);
+            text-align: left;
+            font-size: 22px; /* SCALED DOWN */
+            font-weight: 500;
+            margin-bottom: 24px; /* SCALED DOWN */
+            padding-bottom: 12px; /* SCALED DOWN */
+            border-bottom: 1px solid var(--lol-gold-primary); /* Sharp gold underline */
+            letter-spacing: 0.5px;
+        }
+
+        .champion-section {
             margin-bottom: 20px; /* SCALED DOWN */
         }
 
-        .champion-icon-container {
+        .section-label {
+            color: var(--lol-gold-primary);
+            font-size: 16px; /* SCALED DOWN */
+            font-weight: 500;
+            margin-bottom: 14px; /* SCALED DOWN */
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .champion-icons {
             display: flex;
-            flex-direction: column; /* Stack icon and buttons vertically */
-            align-items: center; /* Center items horizontally */
+            flex-wrap: wrap;
+            gap: 12px; /* SCALED DOWN */
+            margin-bottom: 20px; /* SCALED DOWN */
         }
 
         .champion-icons img {
@@ -56,101 +89,251 @@
             height: 58px; /* SCALED DOWN */
             border: 1.5px solid var(--lol-border); /* SCALED DOWN border width */
             border-radius: 0px; /* Sharp corners */
+            /* SMOOTHER ANIMATION */
             transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
             cursor: pointer;
-            margin-bottom: 6px; /* Space between icon and buttons */
         }
 
         .champion-icons img:hover {
-            transform: scale(1.08);
-            border-color: var(--lol-gold-hover);
+            transform: scale(1.08); /* Keep scale effect, feels responsive */
+            border-color: var(--lol-gold-hover); /* Brighter gold border on hover */
         }
 
-        .champion-button {
-            background-color: var(--lol-button-bg);
-            color: var(--lol-button-text);
-            border: 1px solid var(--lol-button-border);
-            padding: 4px 8px; /* Smaller button padding */
-            border-radius: 2px;
-            cursor: pointer;
-            font-size: 10px; /* Smaller button font */
-            font-weight: 500;
+        hr.section-separator {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--lol-gold-secondary), transparent); /* Faded gold line */
+            margin: 28px 0; /* SCALED DOWN */
+        }
+
+        /* Info Sections (Changelogs, Feedback) */
+        .info-section {
+            border: 1px solid var(--lol-border);
+            border-radius: 0px;
+            padding: 20px; /* SCALED DOWN */
+            margin-top: 24px; /* SCALED DOWN */
+        }
+
+        .info-section h4 {
+            color: var(--lol-gold-primary);
+            font-size: 16px; /* SCALED DOWN (Match section label) */
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 16px; /* SCALED DOWN */
+            padding-bottom: 8px; /* SCALED DOWN */
+            border-bottom: 1px solid var(--lol-gold-secondary);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            margin: 0 2px; /* Spacing between buttons */
+            letter-spacing: 1px;
+            display: inline-block;
         }
 
-        .champion-button:hover {
-            background-color: var(--lol-button-hover-bg);
-            border-color: var(--lol-button-hover-border);
-            color: #ffffff;
+        /* --- REFINED CHANGELOGS STYLES --- */
+        .info-section.changelogs {
+            background-color: #1E2328;
+            border-color: var(--lol-border);
         }
 
-        .champion-button:active {
-            background-color: var(--lol-button-bg);
-            border-color: var(--lol-gold-primary);
-            filter: brightness(0.9);
+        .info-section.changelogs h4 {
+             border-bottom: 1px solid var(--lol-gold-primary);
+             margin-bottom: 12px; /* SCALED DOWN */
+             padding-bottom: 6px; /* SCALED DOWN */
+             letter-spacing: 1.5px;
         }
 
-        hr.section-separator { /* ... hr.section-separator styles from before ... */ }
-        .info-section { /* ... info-section styles from before ... */ }
-        .info-section h4 { /* ... info-section h4 styles from before ... */ }
-        .info-section.changelogs { /* ... info-section.changelogs styles from before ... */ }
-        .info-section.changelogs h4 { /* ... info-section.changelogs h4 styles from before ... */ }
-        .changelogs ul { /* ... changelogs ul styles from before ... */ }
-        .changelogs li { /* ... changelogs li styles from before ... */ }
-        .changelogs li::before { /* ... changelogs li::before styles from before ... */ }
-        .changelogs li strong { /* ... changelogs li strong styles from before ... */ }
-        .info-section.feedback { /* ... info-section.feedback styles from before ... */ }
-        .feedback-row { /* ... feedback-row styles from before ... */ }
-        .feedback-row:last-child { /* ... feedback-row:last-child styles from before ... */ }
-        .feedback-label { /* ... feedback-label styles from before ... */ }
-        .feedback-link { /* ... feedback-link styles from before ... */ }
-        .feedback-link:hover { /* ... feedback-link:hover styles from before ... */ }
-        .copy-button { /* ... copy-button styles from before ... */ }
-        .copy-button:hover { /* ... copy-button:hover styles from before ... */ }
-        .copy-button:active { /* ... copy-button:active styles from before ... */ }
-        .copy-button:disabled { /* ... copy-button:disabled styles from before ... */ }
-        .modal-overlay { /* ... modal-overlay styles from before ... */ }
-        .modal-overlay.active { /* ... modal-overlay.active styles from before ... */ }
-        .modal-content { /* ... modal-content styles from before ... */ }
-        .modal-header { /* ... modal-header styles from before ... */ }
-        .modal-header h3 { /* ... modal-header h3 styles from before ... */ }
-        .modal-close-button { /* ... modal-close-button styles from before ... */ }
-        .modal-close-button:hover { /* ... modal-close-button:hover styles from before ... */ }
-        .modal-body { /* ... modal-body styles from before ... */ }
-        .modal-body p:last-child { /* ... modal-body p:last-child styles from before ... */ }
-        .modal-body strong { /* ... modal-body strong styles from before ... */ }
-
-        /* New Modal Content Area for Highlights */
-        #modalChampionHighlights {
-            display: none; /* Initially Hidden */
-        }
-        #modalChampionHighlights ul {
+        .changelogs ul {
             list-style: none;
             padding-left: 0;
             margin: 0;
             margin-top: 8px; /* SCALED DOWN */
         }
 
-        #modalChampionHighlights li {
-            margin-bottom: 10px; /* SCALED DOWN */
+        .changelogs li {
+            color: var(--lol-gold-highlight);
+            font-size: 12px; /* SCALED DOWN */
+            line-height: 1.6; /* Keep line height for readability */
+            margin-bottom: 8px; /* SCALED DOWN */
+            padding-left: 22px; /* SCALED DOWN */
+            position: relative;
         }
 
-        #modalChampionHighlights a {
+        .changelogs li::before {
+            content: ">";
+            position: absolute;
+            left: 5px;
+            top: 0px; /* Adjust if needed for vertical alignment */
+            color: var(--lol-gold-primary);
+            font-size: 1.1em; /* Relative size */
+            font-weight: normal;
+            line-height: 1;
+        }
+         .changelogs li strong {
+            font-weight: 700;
+            color: var(--lol-gold-highlight);
+         }
+        /* --- END REFINED CHANGELOGS STYLES --- */
+
+
+        /* Feedback Section Styling */
+         .info-section.feedback {
+             background-color: var(--lol-bg-element);
+         }
+
+        .feedback-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px; /* SCALED DOWN */
+            padding: 8px 0; /* SCALED DOWN */
+            border-bottom: 1px solid var(--lol-border);
+        }
+        .feedback-row:last-child {
+             border-bottom: none;
+             margin-bottom: 0;
+             padding-bottom: 0;
+        }
+
+        .feedback-label {
+            color: var(--lol-gold-primary);
+            font-weight: 500;
+            margin-right: 12px; /* SCALED DOWN */
+            flex-shrink: 0;
+            font-size: 12px; /* SCALED DOWN */
+        }
+
+        .feedback-link {
             color: var(--lol-link-color);
             text-decoration: none;
-            display: block; /* Make links block level for better click area */
-            padding: 6px 0; /* Add some vertical spacing */
+            word-break: break-all;
+            margin-right: 12px; /* SCALED DOWN */
+            flex-grow: 1;
+            /* SMOOTHER ANIMATION */
+            transition: color 0.3s ease;
+            font-size: 11px; /* SCALED DOWN */
+        }
+         .feedback-link:hover {
+            color: var(--lol-link-hover);
+            text-decoration: underline;
+        }
+
+        /* Button Styling (LoL Inspired) */
+        .copy-button {
+            background-color: var(--lol-button-bg);
+            color: var(--lol-button-text);
+            border: 1px solid var(--lol-button-border);
+            padding: 6px 12px; /* SCALED DOWN */
+            border-radius: 2px; /* Slight rounding */
+            cursor: pointer;
+            font-size: 11px; /* SCALED DOWN */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+             /* SMOOTHER ANIMATION */
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .copy-button:hover {
+            background-color: var(--lol-button-hover-bg);
+            border-color: var(--lol-gold-hover);
+            color: #ffffff;
+        }
+
+        .copy-button:active {
+             background-color: var(--lol-button-bg);
+             border-color: var(--lol-gold-primary);
+             filter: brightness(0.9);
+        }
+        .copy-button:disabled {
+            background-color: var(--lol-gold-secondary);
+            border-color: var(--lol-gold-secondary);
+            color: var(--lol-bg-element);
+            cursor: default;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+             /* SMOOTHER ANIMATION */
+            transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out; /* Slightly longer for modal */
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--modal-bg);
+            padding: 24px 32px; /* SCALED DOWN */
+            border: 1.5px solid var(--modal-border); /* SCALED DOWN border */
+            border-radius: 0px; /* Sharp corners */
+            max-width: 480px; /* SCALED DOWN */
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Adjusted shadow */
+            color: var(--lol-text-primary);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--lol-gold-primary);
+            padding-bottom: 12px; /* SCALED DOWN */
+            margin-bottom: 16px; /* SCALED DOWN */
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 19px; /* SCALED DOWN */
+            color: var(--lol-gold-primary);
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        .modal-close-button {
+            font-size: 22px; /* SCALED DOWN */
+            font-weight: bold;
+            color: var(--lol-text-secondary);
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0 4px; /* SCALED DOWN */
+            line-height: 1;
              /* SMOOTHER ANIMATION */
             transition: color 0.3s ease;
         }
 
-        #modalChampionHighlights a:hover {
-            color: var(--lol-link-hover);
-            text-decoration: underline;
+        .modal-close-button:hover {
+            color: var(--lol-gold-highlight);
         }
+
+        .modal-body {
+            font-size: 13px; /* SCALED DOWN */
+            line-height: 1.6; /* Keep line height */
+            margin-bottom: 12px; /* SCALED DOWN */
+            color: var(--lol-text-primary);
+         }
+         .modal-body p:last-child {
+             margin-bottom: 0;
+         }
+         .modal-body strong {
+            color: var(--lol-gold-primary);
+            font-weight: 600;
+         }
 
 
     </style>
@@ -164,11 +347,7 @@
         <div class="champion-section">
             <span class="section-label">Reworked</span>
             <div class="champion-icons">
-                <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md">
-                    <button class="champion-button info-button" data-champion-name="Ezreal" data-md-file="ezreal.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Ezreal">Highlights</button>
-                </div>
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md">
             </div>
         </div>
 
@@ -178,31 +357,11 @@
         <div class="champion-section">
             <span class="section-label">New</span>
             <div class="champion-icons">
-                <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/milio/hud/milio_square_0.png" alt="Milio" title="Milio" data-md-file="milio.md">
-                    <button class="champion-button info-button" data-champion-name="Milio" data-md-file="milio.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Milio">Highlights</button>
-                </div>
-                <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/rell/hud/rell_square.png" alt="Rell" title="Rell" data-md-file="rell.md">
-                    <button class="champion-button info-button" data-champion-name="Rell" data-md-file="rell.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Rell">Highlights</button>
-                </div>
-                <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/zeri/hud/zeri_square_0.png" alt="Zeri" title="Zeri" data-md-file="zeri.md">
-                    <button class="champion-button info-button" data-champion-name="Zeri" data-md-file="zeri.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Zeri">Highlights</button>
-                </div>
-                <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/caitlyn/hud/caitlyn_square_0.png" alt="Caitlyn" title="Caitlyn" data-md-file="caitlyn.md">
-                    <button class="champion-button info-button" data-champion-name="Caitlyn" data-md-file="caitlyn.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Caitlyn">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/cassiopeia/hud/cassiopeia_square_0.png" alt="Cassiopeia" title="Cassiopeia" data-md-file="cassiopeia.md">
-                    <button class="champion-button info-button" data-champion-name="Cassiopeia" data-md-file="cassiopeia.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Cassiopeia">Highlights</button>
-                </div>
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/milio/hud/milio_square_0.png" alt="Milio" title="Milio" data-md-file="milio.md">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/rell/hud/rell_square.png" alt="Rell" title="Rell" data-md-file="rell.md">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/zeri/hud/zeri_square_0.png" alt="Zeri" title="Zeri" data-md-file="zeri.md">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/caitlyn/hud/caitlyn_square_0.png" alt="Caitlyn" title="Caitlyn" data-md-file="caitlyn.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/cassiopeia/hud/cassiopeia_square_0.png" alt="Cassiopeia" title="Cassiopeia" data-md-file="cassiopeia.md">
             </div>
         </div>
 
@@ -212,52 +371,15 @@
         <div class="champion-section">
             <span class="section-label">Supported</span>
             <div class="champion-icons">
-                 <!-- ... Supported champions from before - Add buttons to each icon container ... -->
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/thresh/hud/thresh_square.png" alt="Thresh" title="Thresh" data-md-file="thresh.md">
-                    <button class="champion-button info-button" data-champion-name="Thresh" data-md-file="thresh.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Thresh">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/blitzcrank/hud/steamgolem_square.png" alt="Blitzcrank" title="Blitzcrank" data-md-file="blitzcrank.md">
-                    <button class="champion-button info-button" data-champion-name="Blitzcrank" data-md-file="blitzcrank.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Blitzcrank">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/kogmaw/hud/kogmaw_square_0.png" alt="Kog'Maw" title="Kogmaw" data-md-file="kogmaw.md">
-                    <button class="champion-button info-button" data-champion-name="Kogmaw" data-md-file="kogmaw.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Kogmaw">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/xerath/hud/xerath_square.png" alt="Xerath" title="Xerath" data-md-file="xerath.md">
-                    <button class="champion-button info-button" data-champion-name="Xerath" data-md-file="xerath.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Xerath">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/orianna/hud/oriana_square.png" alt="Orianna" title="Orianna" data-md-file="orianna.md">
-                    <button class="champion-button info-button" data-champion-name="Orianna" data-md-file="orianna.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Orianna">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/pyke/hud/pyke_square_0.png" alt="Pyke" title="Pyke" data-md-file="pyke.md">
-                    <button class="champion-button info-button" data-champion-name="Pyke" data-md-file="pyke.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Pyke">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/corki/hud/corki_square_0.png" alt="Corki" title="Corki" data-md-file="corki.md">
-                    <button class="champion-button info-button" data-champion-name="Corki" data-md-file="corki.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Corki">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/yone/hud/yone_square.png" alt="Yone" title="Yone" data-md-file="yone.md">
-                    <button class="champion-button info-button" data-champion-name="Yone" data-md-file="yone.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Yone">Highlights</button>
-                </div>
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/jinx/hud/jinx_square.png" alt="Jinx" title="Jinx" data-md-file="jinx.md">
-                    <button class="champion-button info-button" data-champion-name="Jinx" data-md-file="jinx.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Jinx">Highlights</button>
-                </div>
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/thresh/hud/thresh_square.png" alt="Thresh" title="Thresh" data-md-file="thresh.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/blitzcrank/hud/steamgolem_square.png" alt="Blitzcrank" title="Blitzcrank" data-md-file="blitzcrank.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/kogmaw/hud/kogmaw_square_0.png" alt="Kog'Maw" title="Kogmaw" data-md-file="kogmaw.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/xerath/hud/xerath_square.png" alt="Xerath" title="Xerath" data-md-file="xerath.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/orianna/hud/oriana_square.png" alt="Orianna" title="Orianna" data-md-file="orianna.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/pyke/hud/pyke_square_0.png" alt="Pyke" title="Pyke" data-md-file="pyke.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/corki/hud/corki_square_0.png" alt="Corki" title="Corki" data-md-file="corki.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/yone/hud/yone_square.png" alt="Yone" title="Yone" data-md-file="yone.md">
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/jinx/hud/jinx_square.png" alt="Jinx" title="Jinx" data-md-file="jinx.md">
             </div>
         </div>
 
@@ -267,13 +389,10 @@
         <div class="champion-section">
             <span class="section-label">Beta</span>
             <div class="champion-icons">
-                 <div class="champion-icon-container">
-                    <img src="https://raw.communitydragon.org/latest/game/assets/characters/annie/hud/annie_square.png" alt="Annie" title="Annie" data-md-file="annie.md">
-                    <button class="champion-button info-button" data-champion-name="Annie" data-md-file="annie.md">Info</button>
-                    <button class="champion-button highlights-button" data-champion-name="Annie">Highlights</button>
-                </div>
+                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/annie/hud/annie_square.png" alt="Annie" title="Annie" data-md-file="annie.md">
             </div>
         </div>
+
 
         <!-- Changelogs Section -->
         <div class="info-section changelogs">
@@ -303,7 +422,7 @@
 
     </div> <!-- End lol-ui-container -->
 
-    <!-- Modal Structure -->
+    <!-- Modal Structure (Initially Hidden) -->
     <div id="championModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -311,10 +430,7 @@
                 <button id="closeModalButton" class="modal-close-button">X</button>
             </div>
             <div id="modalChampionInfo" class="modal-body">
-                <!-- Info content will be loaded here -->
-            </div>
-             <div id="modalChampionHighlights" class="modal-body" style="display: none;">
-                <!-- Highlights content will be loaded here -->
+                <!-- Content will be loaded here -->
             </div>
         </div>
     </div>
@@ -322,25 +438,97 @@
 
     <script>
         // --- Copy Button Logic ---
-        function copyToClipboard(elementId) { /* ... copyToClipboard function from before ... */ }
+        function copyToClipboard(elementId) {
+            const linkElement = document.getElementById(elementId);
+            if (!linkElement) return;
+            const textToCopy = linkElement.href;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const button = linkElement.parentElement.querySelector('.copy-button');
+                if(button){
+                     const originalText = button.textContent;
+                     button.textContent = 'Copied!';
+                     button.disabled = true;
+                     setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                     }, 1500); // Keep duration reasonable
+                }
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                 const button = linkElement.parentElement.querySelector('.copy-button');
+                 if(button){
+                     // Provide visual feedback on failure too
+                     const originalText = button.textContent;
+                     button.textContent = 'Failed';
+                     button.disabled = true; // Optional: disable briefly on fail
+                      setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false; // Re-enable
+                     }, 1500);
+                 }
+            });
+        }
 
         // --- Modal Logic ---
         const modalOverlay = document.getElementById('championModal');
         const modalChampionName = document.getElementById('modalChampionName');
         const modalChampionInfo = document.getElementById('modalChampionInfo');
-        const modalChampionHighlights = document.getElementById('modalChampionHighlights'); // New Highlights content area
         const closeModalButton = document.getElementById('closeModalButton');
-        const championIconContainers = document.querySelectorAll('.champion-icon-container'); // Target container
+        const championImages = document.querySelectorAll('.champion-icons img');
 
-        // Basic Markdown to HTML conversion
-        function markdownToHTML(markdownText) { /* ... markdownToHTML function from before ... */ }
+        // Basic Markdown to HTML conversion (Refined slightly)
+        function markdownToHTML(markdownText) {
+            let htmlText = markdownText;
 
-        // Function to open the Info modal
-        function openInfoModal(championName, mdFile) {
-            modalChampionName.textContent = `${championName} - Info`; // Update modal title for Info
+             // Convert line endings for consistency
+            htmlText = htmlText.replace(/\r\n/g, '\n');
+
+            // Headings (###, ##, #) - Process multiline correctly
+            htmlText = htmlText.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+            htmlText = htmlText.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+            htmlText = htmlText.replace(/^# (.*$)/gm, '<h1>$1</h1>');
+
+            // Bold and Italics (**bold**, *italic*) - Handle potential nesting/edge cases slightly better
+            htmlText = htmlText.replace(/\*\*(?=\S)(.*?)(?<=\S)\*\*/g, '<strong>$1</strong>');
+            htmlText = htmlText.replace(/\*(?=\S)(.*?)(?<=\S)\*/g, '<em>$1</em>');
+
+            // Unordered Lists (* list item) - More robust handling
+            // Process items first
+            htmlText = htmlText.replace(/^\* (.*(?:\n(?!\* ).*)*)/gm, (match, itemContent) => {
+                // Handle potential multiline list items (though simple conversion doesn't nest)
+                 return `<li>${itemContent.trim()}</li>\n`;
+             });
+             // Wrap consecutive LIs in UL
+             htmlText = htmlText.replace(/((?:<li>.*<\/li>\n)+)/g, '<ul>\n$1</ul>\n');
+
+
+            // Paragraphs (handle multiple blank lines, avoid wrapping lists/headings)
+            // Split into blocks by double newline, then wrap non-tag blocks in <p>
+            htmlText = htmlText.split('\n\n').map(paragraph => {
+                paragraph = paragraph.trim();
+                if (paragraph.length === 0) return '';
+                // Avoid wrapping if it already starts with a block tag (h, ul, li, p)
+                if (/^<(h[1-6]|ul|li|p|strong|em)/i.test(paragraph)) {
+                    return paragraph;
+                }
+                 // Wrap remaining lines in <p>, handling single line breaks within paragraph
+                 return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+            }).join('\n\n'); // Re-join paragraphs
+
+            // Clean up any potential empty tags or extra newlines if necessary
+            htmlText = htmlText.replace(/<p><\/p>/g, '');
+            htmlText = htmlText.replace(/<ul>\n<\/ul>\n/g, '');
+
+
+            return htmlText;
+        }
+
+
+        // Function to open the modal
+        function openModal(championName, mdFile) {
+            modalChampionName.textContent = championName;
             modalChampionInfo.innerHTML = `<p>Loading ${championName} information...</p>`;
-            modalChampionHighlights.style.display = 'none'; // Ensure highlights are hidden
-            modalChampionInfo.style.display = 'block'; // Show info content
             modalOverlay.classList.add('active');
 
             fetch(mdFile)
@@ -360,55 +548,25 @@
                 });
         }
 
-        // Function to open the Highlights modal
-        function openHighlightsModal(championName) {
-            modalChampionName.textContent = `${championName} - Highlights`; // Update modal title for Highlights
-            modalChampionHighlights.innerHTML = `<p>Loading highlights for ${championName}...</p>`;
-            modalChampionInfo.style.display = 'none'; // Ensure info is hidden
-            modalChampionHighlights.style.display = 'block'; // Show highlights content
-            modalOverlay.classList.add('active');
-
-            // Example video URLs for Ezreal - Replace with your actual URLs
-            const videoURLs = {
-                "Ezreal": [
-                    { title: "Ezreal Montage 1", url: "https://www.youtube.com/embed/VIDEO_ID_1" }, // Replace VIDEO_ID_1
-                    { title: "Ezreal Gameplay 2", url: "https://www.youtube.com/embed/VIDEO_ID_2" }  // Replace VIDEO_ID_2
-                    // Add more videos as needed
-                ]
-                // Add video URLs for other champions if you have them
-            };
-
-            let highlightsHTML = '<ul>';
-            if (videoURLs[championName]) {
-                videoURLs[championName].forEach(video => {
-                    highlightsHTML += `<li><a href="${video.url}" target="_blank">${video.title}</a></li>`; // Example as links
-                    // Or embed videos (be mindful of iframe security and performance):
-                    // highlightsHTML += `<li><iframe width="420" height="315" src="${video.url}" frameborder="0" allowfullscreen></iframe></li>`;
-                });
-            } else {
-                highlightsHTML += `<li>No highlights available for ${championName} yet.</li>`;
-            }
-            highlightsHTML += '</ul>';
-            modalChampionHighlights.innerHTML = highlightsHTML;
+        // Function to close the modal
+        function closeModal() {
+            modalOverlay.classList.remove('active');
         }
 
-
-        // Function to close the modal
-        function closeModal() { /* ... closeModal function from before ... */ }
-
-        // Add event listeners to champion icon containers
-        championIconContainers.forEach(container => {
-            container.addEventListener('click', (event) => {
-                const championName = container.querySelector('img').getAttribute('alt'); // Get champion name from the image
-                const mdFile = container.querySelector('.info-button').getAttribute('data-md-file'); // Get md file from info button
-                if (event.target.classList.contains('info-button')) {
-                    openInfoModal(championName, mdFile);
-                } else if (event.target.classList.contains('highlights-button')) {
-                    openHighlightsModal(championName);
+        // Add event listeners to all champion images
+        championImages.forEach(img => {
+            img.addEventListener('click', () => {
+                const championName = img.getAttribute('alt');
+                const mdFile = img.getAttribute('data-md-file');
+                if (mdFile) { // Only open if md-file attribute exists
+                    openModal(championName, mdFile);
+                } else {
+                    console.warn(`No data-md-file specified for ${championName}`);
+                    // Optionally show a message in the UI or modal
+                    // openModal(championName, null); // Could adapt openModal to handle this
                 }
             });
         });
-
 
         // Add event listener for the close button
         closeModalButton.addEventListener('click', closeModal);
