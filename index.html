@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DanZ-AIO Champions - LoL UI Style</title>
+    <title>DanZ-AIO Champions - LoL UI Style (Refined)</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap'); /* Using Roboto as a fallback for LoL fonts */
 
@@ -27,7 +27,7 @@
             --lol-button-text: var(--lol-gold-highlight);
             --lol-link-color: #87CEFA;      /* Keeping a distinct link blue, but could be teal/gold */
             --lol-link-hover: #ADD8E6;
-            --modal-overlay-bg: rgba(10, 20, 40, 0.85); /* Semi-transparent dark blue overlay */
+            --modal-overlay-bg: rgba(10, 20, 40, 0.88); /* Slightly darker overlay */
             --modal-bg: var(--lol-bg-container);
             --modal-border: var(--lol-gold-primary);
         }
@@ -37,64 +37,65 @@
             color: var(--lol-text-secondary); /* Default text color */
             font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 30px; /* Added padding around the body */
+            padding: 24px; /* SCALED DOWN */
         }
 
         .lol-ui-container {
-            max-width: 850px; /* Slightly wider */
-            margin: 20px auto;
+            max-width: 680px; /* SCALED DOWN */
+            margin: 16px auto; /* SCALED DOWN */
             background-color: var(--lol-bg-container);
             border: 1px solid var(--lol-gold-secondary); /* Darker gold border for main container */
             border-radius: 0px; /* Sharp corners common in LoL UI */
-            padding: 30px;
-            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7); /* Deeper shadow */
-            position: relative; /* Needed for potential absolute positioning inside */
-            z-index: 1; /* Ensure content is above potential body background elements */
+            padding: 24px; /* SCALED DOWN */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7); /* Slightly adjusted shadow */
+            position: relative;
+            z-index: 1;
         }
 
         .main-title {
             color: var(--lol-gold-primary);
             text-align: left;
-            font-size: 28px; /* Larger title */
-            font-weight: 500; /* Medium weight */
-            margin-bottom: 30px;
-            padding-bottom: 15px;
+            font-size: 22px; /* SCALED DOWN */
+            font-weight: 500;
+            margin-bottom: 24px; /* SCALED DOWN */
+            padding-bottom: 12px; /* SCALED DOWN */
             border-bottom: 1px solid var(--lol-gold-primary); /* Sharp gold underline */
             letter-spacing: 0.5px;
         }
 
         .champion-section {
-            margin-bottom: 25px;
+            margin-bottom: 20px; /* SCALED DOWN */
         }
 
         .section-label {
-            color: var(--lol-gold-primary); /* Use primary gold for labels */
-            font-size: 20px;
+            color: var(--lol-gold-primary);
+            font-size: 16px; /* SCALED DOWN */
             font-weight: 500;
-            margin-bottom: 18px;
+            margin-bottom: 14px; /* SCALED DOWN */
             display: block;
-            text-transform: uppercase; /* Uppercase labels are common */
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .champion-icons {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px; /* Consistent gap */
-            margin-bottom: 25px;
+            gap: 12px; /* SCALED DOWN */
+            margin-bottom: 20px; /* SCALED DOWN */
         }
 
         .champion-icons img {
-            width: 72px; /* Slightly larger icons */
-            height: 72px;
-            border: 2px solid var(--lol-border); /* Darker, subtle gold border */
+            width: 58px; /* SCALED DOWN */
+            height: 58px; /* SCALED DOWN */
+            border: 1.5px solid var(--lol-border); /* SCALED DOWN border width */
             border-radius: 0px; /* Sharp corners */
-            transition: transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            cursor: pointer; /* Indicate clickable */
+            /* SMOOTHER ANIMATION */
+            transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            cursor: pointer;
         }
 
         .champion-icons img:hover {
-            transform: scale(1.08); /* Slightly larger pop */
+            transform: scale(1.08); /* Keep scale effect, feels responsive */
             border-color: var(--lol-gold-hover); /* Brighter gold border on hover */
         }
 
@@ -102,93 +103,88 @@
             border: 0;
             height: 1px;
             background: linear-gradient(to right, transparent, var(--lol-gold-secondary), transparent); /* Faded gold line */
-            margin: 35px 0;
+            margin: 28px 0; /* SCALED DOWN */
         }
 
         /* Info Sections (Changelogs, Feedback) */
         .info-section {
-           /* background-color: var(--lol-bg-element); /* Use the element background color */
-           /* Using the specific dark grey from the image for changelogs */
-            border: 1px solid var(--lol-border); /* Consistent dark gold border */
+            border: 1px solid var(--lol-border);
             border-radius: 0px;
-            padding: 25px;
-            margin-top: 30px;
+            padding: 20px; /* SCALED DOWN */
+            margin-top: 24px; /* SCALED DOWN */
         }
 
         .info-section h4 {
             color: var(--lol-gold-primary);
-            font-size: 20px; /* Match section label size */
-            font-weight: 600; /* Slightly bolder */
+            font-size: 16px; /* SCALED DOWN (Match section label) */
+            font-weight: 600;
             margin-top: 0;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--lol-gold-secondary); /* Dark gold underline */
-            text-transform: uppercase; /* Uppercase headings */
+            margin-bottom: 16px; /* SCALED DOWN */
+            padding-bottom: 8px; /* SCALED DOWN */
+            border-bottom: 1px solid var(--lol-gold-secondary);
+            text-transform: uppercase;
             letter-spacing: 1px;
-            display: inline-block; /* Make underline only span text width */
+            display: inline-block;
         }
 
         /* --- REFINED CHANGELOGS STYLES --- */
         .info-section.changelogs {
-            background-color: #1E2328; /* Specific Dark Grey/Blue from screenshot */
-            border-color: var(--lol-border); /* Overriding potential default */
+            background-color: #1E2328;
+            border-color: var(--lol-border);
         }
 
         .info-section.changelogs h4 {
-             border-bottom: 1px solid var(--lol-gold-primary); /* Gold underline for this specific header */
-             margin-bottom: 15px; /* Space below heading */
-             padding-bottom: 8px; /* Space below text before line */
-             letter-spacing: 1.5px; /* More spacing for uppercase title */
+             border-bottom: 1px solid var(--lol-gold-primary);
+             margin-bottom: 12px; /* SCALED DOWN */
+             padding-bottom: 6px; /* SCALED DOWN */
+             letter-spacing: 1.5px;
         }
 
         .changelogs ul {
             list-style: none;
             padding-left: 0;
             margin: 0;
-            margin-top: 10px; /* Add some space between heading line and list */
+            margin-top: 8px; /* SCALED DOWN */
         }
 
         .changelogs li {
-            color: var(--lol-gold-highlight); /* #F0E6D2 - Lightest gold for the main text */
-            font-size: 15px;
-            line-height: 1.7; /* Adjust line spacing */
-            margin-bottom: 10px; /* Space between list items */
-            padding-left: 28px; /* Increase padding to make space for the custom bullet */
+            color: var(--lol-gold-highlight);
+            font-size: 12px; /* SCALED DOWN */
+            line-height: 1.6; /* Keep line height for readability */
+            margin-bottom: 8px; /* SCALED DOWN */
+            padding-left: 22px; /* SCALED DOWN */
             position: relative;
         }
 
         .changelogs li::before {
-    /* Use a standard UTF-8 diamond character */
-    content: ">"; /* Unicode Black Diamond Suit (U+2666) */
-    position: absolute;
-    left: 5px; /* Position bullet */
-    /* Adjust top slightly if needed for vertical alignment with this character */
-    top: 0px; /* Example adjustment, fine-tune as needed */
-    color: var(--lol-gold-primary); /* #C8AA6E - Primary gold for the bullet */
-    font-size: 1.1em; /* Make bullet slightly larger */
-    font-weight: normal; /* Ensure bullet isn't bolded if parent is */
-    line-height: 1; /* Prevent affecting li line height */
-}
+            content: ">";
+            position: absolute;
+            left: 5px;
+            top: 0px; /* Adjust if needed for vertical alignment */
+            color: var(--lol-gold-primary);
+            font-size: 1.1em; /* Relative size */
+            font-weight: normal;
+            line-height: 1;
+        }
          .changelogs li strong {
-            /* The "Cassiopeia:", "Farm Modes:" part */
-            font-weight: 700; /* Bold */
-            color: var(--lol-gold-highlight); /* Same light gold as the rest of the text */
+            font-weight: 700;
+            color: var(--lol-gold-highlight);
          }
         /* --- END REFINED CHANGELOGS STYLES --- */
 
 
         /* Feedback Section Styling */
          .info-section.feedback {
-             background-color: var(--lol-bg-element); /* Standard element background */
+             background-color: var(--lol-bg-element);
          }
 
         .feedback-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--lol-border); /* Subtle separator line */
+            margin-bottom: 12px; /* SCALED DOWN */
+            padding: 8px 0; /* SCALED DOWN */
+            border-bottom: 1px solid var(--lol-border);
         }
         .feedback-row:last-child {
              border-bottom: none;
@@ -197,24 +193,25 @@
         }
 
         .feedback-label {
-            color: var(--lol-gold-primary); /* Gold label */
+            color: var(--lol-gold-primary);
             font-weight: 500;
-            margin-right: 15px;
+            margin-right: 12px; /* SCALED DOWN */
             flex-shrink: 0;
-            font-size: 15px;
+            font-size: 12px; /* SCALED DOWN */
         }
 
         .feedback-link {
-            color: var(--lol-link-color); /* Standard link blue */
+            color: var(--lol-link-color);
             text-decoration: none;
             word-break: break-all;
-            margin-right: 15px;
+            margin-right: 12px; /* SCALED DOWN */
             flex-grow: 1;
-            transition: color 0.2s ease;
-            font-size: 14px;
+            /* SMOOTHER ANIMATION */
+            transition: color 0.3s ease;
+            font-size: 11px; /* SCALED DOWN */
         }
          .feedback-link:hover {
-            color: var(--lol-link-hover); /* Lighter blue on hover */
+            color: var(--lol-link-hover);
             text-decoration: underline;
         }
 
@@ -222,30 +219,31 @@
         .copy-button {
             background-color: var(--lol-button-bg);
             color: var(--lol-button-text);
-            border: 1px solid var(--lol-button-border); /* Gold border */
-            padding: 8px 16px; /* More padding */
+            border: 1px solid var(--lol-button-border);
+            padding: 6px 12px; /* SCALED DOWN */
             border-radius: 2px; /* Slight rounding */
             cursor: pointer;
-            font-size: 14px;
+            font-size: 11px; /* SCALED DOWN */
             font-weight: 500;
-            text-transform: uppercase; /* Uppercase button text */
+            text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+             /* SMOOTHER ANIMATION */
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
             flex-shrink: 0;
         }
 
         .copy-button:hover {
             background-color: var(--lol-button-hover-bg);
-            border-color: var(--lol-gold-hover); /* Brighter gold border */
-            color: #ffffff; /* Slightly brighter text on hover */
+            border-color: var(--lol-gold-hover);
+            color: #ffffff;
         }
 
         .copy-button:active {
              background-color: var(--lol-button-bg);
              border-color: var(--lol-gold-primary);
-             filter: brightness(0.9); /* Slightly darken on click */
+             filter: brightness(0.9);
         }
-        .copy-button:disabled { /* Style for when 'Copied!' shows */
+        .copy-button:disabled {
             background-color: var(--lol-gold-secondary);
             border-color: var(--lol-gold-secondary);
             color: var(--lol-bg-element);
@@ -254,19 +252,20 @@
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
-            position: fixed; /* Sit on top of everything */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--modal-overlay-bg); /* Semi-transparent background */
-            display: flex; /* Use flexbox for centering */
+            background-color: var(--modal-overlay-bg);
+            display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* High z-index */
-            opacity: 0; /* Hidden by default */
-            visibility: hidden; /* Hidden by default */
-            transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+             /* SMOOTHER ANIMATION */
+            transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out; /* Slightly longer for modal */
         }
 
         .modal-overlay.active {
@@ -276,16 +275,16 @@
 
         .modal-content {
             background-color: var(--modal-bg);
-            padding: 30px 40px;
-            border: 2px solid var(--modal-border); /* Prominent gold border */
+            padding: 24px 32px; /* SCALED DOWN */
+            border: 1.5px solid var(--modal-border); /* SCALED DOWN border */
             border-radius: 0px; /* Sharp corners */
-            max-width: 600px; /* Max width of modal */
-            width: 90%; /* Responsive width */
-            position: relative; /* For positioning the close button */
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            max-width: 480px; /* SCALED DOWN */
+            width: 90%;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Adjusted shadow */
             color: var(--lol-text-primary);
-            max-height: 80vh; /* Max height */
-            overflow-y: auto; /* Add scroll if content overflows */
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .modal-header {
@@ -293,39 +292,40 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--lol-gold-primary);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            padding-bottom: 12px; /* SCALED DOWN */
+            margin-bottom: 16px; /* SCALED DOWN */
         }
 
         .modal-header h3 {
             margin: 0;
-            font-size: 24px;
+            font-size: 19px; /* SCALED DOWN */
             color: var(--lol-gold-primary);
             font-weight: 500;
             letter-spacing: 1px;
         }
 
         .modal-close-button {
-            font-size: 28px;
+            font-size: 22px; /* SCALED DOWN */
             font-weight: bold;
             color: var(--lol-text-secondary);
             cursor: pointer;
             background: none;
             border: none;
-            padding: 0 5px;
+            padding: 0 4px; /* SCALED DOWN */
             line-height: 1;
-            transition: color 0.2s ease;
+             /* SMOOTHER ANIMATION */
+            transition: color 0.3s ease;
         }
 
         .modal-close-button:hover {
             color: var(--lol-gold-highlight);
         }
 
-        .modal-body { /* Removed <p> and <ul> etc, now just a div */
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 15px;
-            color: var(--lol-text-primary); /* Ensure body text is light */
+        .modal-body {
+            font-size: 13px; /* SCALED DOWN */
+            line-height: 1.6; /* Keep line height */
+            margin-bottom: 12px; /* SCALED DOWN */
+            color: var(--lol-text-primary);
          }
          .modal-body p:last-child {
              margin-bottom: 0;
@@ -429,7 +429,7 @@
                 <h3 id="modalChampionName">Champion Name</h3>
                 <button id="closeModalButton" class="modal-close-button">X</button>
             </div>
-            <div id="modalChampionInfo" class="modal-body"> <!-- Changed to div with id for content -->
+            <div id="modalChampionInfo" class="modal-body">
                 <!-- Content will be loaded here -->
             </div>
         </div>
@@ -452,15 +452,19 @@
                      setTimeout(() => {
                         button.textContent = originalText;
                         button.disabled = false;
-                     }, 1500);
+                     }, 1500); // Keep duration reasonable
                 }
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
                  const button = linkElement.parentElement.querySelector('.copy-button');
                  if(button){
+                     // Provide visual feedback on failure too
+                     const originalText = button.textContent;
                      button.textContent = 'Failed';
+                     button.disabled = true; // Optional: disable briefly on fail
                       setTimeout(() => {
-                        button.textContent = 'Copy';
+                        button.textContent = originalText;
+                        button.disabled = false; // Re-enable
                      }, 1500);
                  }
             });
@@ -469,31 +473,52 @@
         // --- Modal Logic ---
         const modalOverlay = document.getElementById('championModal');
         const modalChampionName = document.getElementById('modalChampionName');
-        const modalChampionInfo = document.getElementById('modalChampionInfo'); // Reference to the DIV now
+        const modalChampionInfo = document.getElementById('modalChampionInfo');
         const closeModalButton = document.getElementById('closeModalButton');
         const championImages = document.querySelectorAll('.champion-icons img');
 
-        // Basic Markdown to HTML conversion (for headings, lists, bold, italic)
+        // Basic Markdown to HTML conversion (Refined slightly)
         function markdownToHTML(markdownText) {
             let htmlText = markdownText;
 
-            // Headings (###)
+             // Convert line endings for consistency
+            htmlText = htmlText.replace(/\r\n/g, '\n');
+
+            // Headings (###, ##, #) - Process multiline correctly
             htmlText = htmlText.replace(/^### (.*$)/gm, '<h3>$1</h3>');
             htmlText = htmlText.replace(/^## (.*$)/gm, '<h2>$1</h2>');
             htmlText = htmlText.replace(/^# (.*$)/gm, '<h1>$1</h1>');
 
-            // Bold and Italics (**bold**, *italic*)
-            htmlText = htmlText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            htmlText = htmlText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+            // Bold and Italics (**bold**, *italic*) - Handle potential nesting/edge cases slightly better
+            htmlText = htmlText.replace(/\*\*(?=\S)(.*?)(?<=\S)\*\*/g, '<strong>$1</strong>');
+            htmlText = htmlText.replace(/\*(?=\S)(.*?)(?<=\S)\*/g, '<em>$1</em>');
 
-            // Unordered Lists (* list item)
-            htmlText = htmlText.replace(/^\* (.*$)/gm, '<li>$1</li>');
-            const listRegex = /^(<li>.*<\/li>\n)+/gm; // Regex to wrap consecutive <li> in <ul>
-            htmlText = htmlText.replace(listRegex, (match) => `<ul>\n${match}</ul>`);
+            // Unordered Lists (* list item) - More robust handling
+            // Process items first
+            htmlText = htmlText.replace(/^\* (.*(?:\n(?!\* ).*)*)/gm, (match, itemContent) => {
+                // Handle potential multiline list items (though simple conversion doesn't nest)
+                 return `<li>${itemContent.trim()}</li>\n`;
+             });
+             // Wrap consecutive LIs in UL
+             htmlText = htmlText.replace(/((?:<li>.*<\/li>\n)+)/g, '<ul>\n$1</ul>\n');
 
 
-            // Paragraphs (simple line breaks) - only if not already in a tag
-            htmlText = htmlText.replace(/^(?!(<h|<ul|<li|<strong|<em|<p>))(.*)$/gm, '<p>$2</p>');
+            // Paragraphs (handle multiple blank lines, avoid wrapping lists/headings)
+            // Split into blocks by double newline, then wrap non-tag blocks in <p>
+            htmlText = htmlText.split('\n\n').map(paragraph => {
+                paragraph = paragraph.trim();
+                if (paragraph.length === 0) return '';
+                // Avoid wrapping if it already starts with a block tag (h, ul, li, p)
+                if (/^<(h[1-6]|ul|li|p|strong|em)/i.test(paragraph)) {
+                    return paragraph;
+                }
+                 // Wrap remaining lines in <p>, handling single line breaks within paragraph
+                 return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+            }).join('\n\n'); // Re-join paragraphs
+
+            // Clean up any potential empty tags or extra newlines if necessary
+            htmlText = htmlText.replace(/<p><\/p>/g, '');
+            htmlText = htmlText.replace(/<ul>\n<\/ul>\n/g, '');
 
 
             return htmlText;
@@ -503,37 +528,43 @@
         // Function to open the modal
         function openModal(championName, mdFile) {
             modalChampionName.textContent = championName;
-            modalChampionInfo.innerHTML = `<p>Loading ${championName} information...</p>`; // Initial loading message
-            modalOverlay.classList.add('active'); // Show the modal
+            modalChampionInfo.innerHTML = `<p>Loading ${championName} information...</p>`;
+            modalOverlay.classList.add('active');
 
-            fetch(mdFile) // Fetch the markdown file
+            fetch(mdFile)
                 .then(response => {
                     if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
+                        throw new Error(`HTTP error! status: ${response.status}, loading ${mdFile}`);
                     }
                     return response.text();
                 })
                 .then(markdown => {
-                    const htmlContent = markdownToHTML(markdown); // Convert markdown to HTML
-                    modalChampionInfo.innerHTML = htmlContent; // Set HTML content to modal body
+                    const htmlContent = markdownToHTML(markdown);
+                    modalChampionInfo.innerHTML = htmlContent;
                 })
                 .catch(error => {
                     console.error('Error fetching or processing markdown:', error);
-                    modalChampionInfo.innerHTML = `<p>Failed to load information for ${championName}.</p>`; // Error message
+                    modalChampionInfo.innerHTML = `<p>Failed to load information for ${championName}. Please check the console for details.</p>`;
                 });
         }
 
         // Function to close the modal
         function closeModal() {
-            modalOverlay.classList.remove('active'); // Hide the modal
+            modalOverlay.classList.remove('active');
         }
 
         // Add event listeners to all champion images
         championImages.forEach(img => {
             img.addEventListener('click', () => {
-                const championName = img.getAttribute('alt'); // Get name from alt text
-                const mdFile = img.getAttribute('data-md-file'); // Get markdown filename
-                openModal(championName, mdFile);
+                const championName = img.getAttribute('alt');
+                const mdFile = img.getAttribute('data-md-file');
+                if (mdFile) { // Only open if md-file attribute exists
+                    openModal(championName, mdFile);
+                } else {
+                    console.warn(`No data-md-file specified for ${championName}`);
+                    // Optionally show a message in the UI or modal
+                    // openModal(championName, null); // Could adapt openModal to handle this
+                }
             });
         });
 
@@ -542,8 +573,14 @@
 
         // Add event listener to close modal if clicking on the overlay background
         modalOverlay.addEventListener('click', (event) => {
-            // Close only if the click is directly on the overlay, not the content inside
             if (event.target === modalOverlay) {
+                closeModal();
+            }
+        });
+
+        // Optional: Close modal on 'Escape' key press
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
                 closeModal();
             }
         });
