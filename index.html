@@ -89,7 +89,6 @@
             height: 58px; /* SCALED DOWN */
             border: 1.5px solid var(--lol-border); /* SCALED DOWN border width */
             border-radius: 0px; /* Sharp corners */
-            /* SMOOTHER ANIMATION */
             transition: transform 0.3s ease-in-out, border-color 0.3s ease-in-out;
             cursor: pointer;
         }
@@ -127,214 +126,156 @@
             display: inline-block;
         }
 
-        /* --- REFINED CHANGELOGS STYLES --- */
         .info-section.changelogs {
             background-color: #1E2328;
             border-color: var(--lol-border);
         }
-
         .info-section.changelogs h4 {
              border-bottom: 1px solid var(--lol-gold-primary);
              margin-bottom: 12px; /* SCALED DOWN */
              padding-bottom: 6px; /* SCALED DOWN */
              letter-spacing: 1.5px;
         }
+        .changelogs ul { list-style: none; padding-left: 0; margin: 0; margin-top: 8px; }
+        .changelogs li { color: var(--lol-gold-highlight); font-size: 12px; line-height: 1.6; margin-bottom: 8px; padding-left: 22px; position: relative; }
+        .changelogs li::before { content: ">"; position: absolute; left: 5px; top: 0px; color: var(--lol-gold-primary); font-size: 1.1em; font-weight: normal; line-height: 1; }
+        .changelogs li strong { font-weight: 700; color: var(--lol-gold-highlight); }
 
-        .changelogs ul {
-            list-style: none;
-            padding-left: 0;
-            margin: 0;
-            margin-top: 8px; /* SCALED DOWN */
-        }
+        .info-section.feedback { background-color: var(--lol-bg-element); }
+        .feedback-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 8px 0; border-bottom: 1px solid var(--lol-border); }
+        .feedback-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .feedback-label { color: var(--lol-gold-primary); font-weight: 500; margin-right: 12px; flex-shrink: 0; font-size: 12px; }
+        .feedback-link { color: var(--lol-link-color); text-decoration: none; word-break: break-all; margin-right: 12px; flex-grow: 1; transition: color 0.3s ease; font-size: 11px; }
+        .feedback-link:hover { color: var(--lol-link-hover); text-decoration: underline; }
 
-        .changelogs li {
-            color: var(--lol-gold-highlight);
-            font-size: 12px; /* SCALED DOWN */
-            line-height: 1.6; /* Keep line height for readability */
-            margin-bottom: 8px; /* SCALED DOWN */
-            padding-left: 22px; /* SCALED DOWN */
-            position: relative;
-        }
-
-        .changelogs li::before {
-            content: ">";
-            position: absolute;
-            left: 5px;
-            top: 0px; /* Adjust if needed for vertical alignment */
-            color: var(--lol-gold-primary);
-            font-size: 1.1em; /* Relative size */
-            font-weight: normal;
-            line-height: 1;
-        }
-         .changelogs li strong {
-            font-weight: 700;
-            color: var(--lol-gold-highlight);
-         }
-        /* --- END REFINED CHANGELOGS STYLES --- */
-
-
-        /* Feedback Section Styling */
-         .info-section.feedback {
-             background-color: var(--lol-bg-element);
-         }
-
-        .feedback-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px; /* SCALED DOWN */
-            padding: 8px 0; /* SCALED DOWN */
-            border-bottom: 1px solid var(--lol-border);
-        }
-        .feedback-row:last-child {
-             border-bottom: none;
-             margin-bottom: 0;
-             padding-bottom: 0;
-        }
-
-        .feedback-label {
-            color: var(--lol-gold-primary);
-            font-weight: 500;
-            margin-right: 12px; /* SCALED DOWN */
-            flex-shrink: 0;
-            font-size: 12px; /* SCALED DOWN */
-        }
-
-        .feedback-link {
-            color: var(--lol-link-color);
-            text-decoration: none;
-            word-break: break-all;
-            margin-right: 12px; /* SCALED DOWN */
-            flex-grow: 1;
-            /* SMOOTHER ANIMATION */
-            transition: color 0.3s ease;
-            font-size: 11px; /* SCALED DOWN */
-        }
-         .feedback-link:hover {
-            color: var(--lol-link-hover);
-            text-decoration: underline;
-        }
-
-        /* Button Styling (LoL Inspired) */
-        .copy-button {
-            background-color: var(--lol-button-bg);
-            color: var(--lol-button-text);
-            border: 1px solid var(--lol-button-border);
-            padding: 6px 12px; /* SCALED DOWN */
-            border-radius: 2px; /* Slight rounding */
-            cursor: pointer;
-            font-size: 11px; /* SCALED DOWN */
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-             /* SMOOTHER ANIMATION */
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-            flex-shrink: 0;
-        }
-
-        .copy-button:hover {
-            background-color: var(--lol-button-hover-bg);
-            border-color: var(--lol-gold-hover);
-            color: #ffffff;
-        }
-
-        .copy-button:active {
-             background-color: var(--lol-button-bg);
-             border-color: var(--lol-gold-primary);
-             filter: brightness(0.9);
-        }
-        .copy-button:disabled {
-            background-color: var(--lol-gold-secondary);
-            border-color: var(--lol-gold-secondary);
-            color: var(--lol-bg-element);
-            cursor: default;
-        }
+        .copy-button { /* Existing styles */
+            background-color: var(--lol-button-bg); color: var(--lol-button-text); border: 1px solid var(--lol-button-border); padding: 6px 12px; border-radius: 2px; cursor: pointer; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; flex-shrink: 0; }
+        .copy-button:hover { background-color: var(--lol-button-hover-bg); border-color: var(--lol-gold-hover); color: #ffffff; }
+        .copy-button:active { background-color: var(--lol-button-bg); border-color: var(--lol-gold-primary); filter: brightness(0.9); }
+        .copy-button:disabled { background-color: var(--lol-gold-secondary); border-color: var(--lol-gold-secondary); color: var(--lol-bg-element); cursor: default; }
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--modal-overlay-bg);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-             /* SMOOTHER ANIMATION */
-            transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out; /* Slightly longer for modal */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--modal-overlay-bg); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: opacity 0.35s ease-in-out, visibility 0.35s ease-in-out;
         }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
 
         .modal-content {
             background-color: var(--modal-bg);
             padding: 24px 32px; /* SCALED DOWN */
             border: 1.5px solid var(--modal-border); /* SCALED DOWN border */
             border-radius: 0px; /* Sharp corners */
-            max-width: 480px; /* SCALED DOWN */
+            max-width: 520px; /* SCALED DOWN SLIGHTLY INCREASED FOR VIDEO */
             width: 90%;
             position: relative;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5); /* Adjusted shadow */
             color: var(--lol-text-primary);
-            max-height: 80vh;
-            overflow-y: auto;
+            max-height: 90vh; /* Increased slightly for potential video height */
+            display: flex; /* Use flexbox for vertical layout */
+            flex-direction: column;
+            overflow: hidden; /* Prevent internal scrollbars initially */
         }
 
         .modal-header {
+            display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--lol-gold-primary); padding-bottom: 12px; margin-bottom: 16px; flex-shrink: 0; /* Prevent header from shrinking */
+        }
+        .modal-header h3 { margin: 0; font-size: 19px; color: var(--lol-gold-primary); font-weight: 500; letter-spacing: 1px; }
+        .modal-close-button { font-size: 22px; font-weight: bold; color: var(--lol-text-secondary); cursor: pointer; background: none; border: none; padding: 0 4px; line-height: 1; transition: color 0.3s ease; }
+        .modal-close-button:hover { color: var(--lol-gold-highlight); }
+
+        /* --- NEW MODAL OPTIONS --- */
+        .modal-options {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--lol-gold-primary);
-            padding-bottom: 12px; /* SCALED DOWN */
-            margin-bottom: 16px; /* SCALED DOWN */
+            gap: 15px; /* Space between buttons */
+            margin-bottom: 20px; /* Space below buttons */
+            flex-shrink: 0; /* Prevent options from shrinking */
         }
 
-        .modal-header h3 {
-            margin: 0;
-            font-size: 19px; /* SCALED DOWN */
-            color: var(--lol-gold-primary);
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-
-        .modal-close-button {
-            font-size: 22px; /* SCALED DOWN */
-            font-weight: bold;
-            color: var(--lol-text-secondary);
+        .modal-choice-button {
+            /* Inherit from copy-button and adjust */
+            background-color: var(--lol-button-bg);
+            color: var(--lol-button-text);
+            border: 1px solid var(--lol-button-border);
+            padding: 8px 16px; /* Slightly larger */
+            border-radius: 2px;
             cursor: pointer;
-            background: none;
-            border: none;
-            padding: 0 4px; /* SCALED DOWN */
-            line-height: 1;
-             /* SMOOTHER ANIMATION */
-            transition: color 0.3s ease;
+            font-size: 13px; /* Slightly larger */
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px; /* More spacing */
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+            flex-grow: 1; /* Make buttons fill space */
+            text-align: center;
         }
 
-        .modal-close-button:hover {
-            color: var(--lol-gold-highlight);
+        .modal-choice-button:hover {
+            background-color: var(--lol-button-hover-bg);
+            border-color: var(--lol-gold-hover);
+            color: #ffffff;
+        }
+        .modal-choice-button:disabled { /* Style for disabled state (no video) */
+            background-color: var(--lol-bg-element);
+            border-color: var(--lol-gold-secondary);
+            color: var(--lol-text-secondary);
+            cursor: not-allowed;
+            filter: grayscale(50%);
         }
 
-        .modal-body {
+        .modal-choice-button.active { /* Style for the active button */
+            background-color: var(--lol-gold-hover); /* Use brighter gold */
+            border-color: var(--lol-gold-highlight); /* Lighter border */
+            color: var(--lol-bg-deep); /* Dark text for contrast */
+            font-weight: 700;
+        }
+
+        /* --- MODAL CONTENT AREAS --- */
+        .modal-body-content {
+             flex-grow: 1; /* Allow content area to fill remaining space */
+             overflow-y: auto; /* Add scrollbar ONLY if content overflows */
+             /* Add some padding if needed, or let content divs handle it */
+             padding-right: 10px; /* Add space for scrollbar */
+             margin-right: -10px; /* Counteract padding for full width */
+        }
+
+        #modalInfoContent, #modalHighlightsContent {
+            display: none; /* Hide both by default */
             font-size: 13px; /* SCALED DOWN */
             line-height: 1.6; /* Keep line height */
-            margin-bottom: 12px; /* SCALED DOWN */
             color: var(--lol-text-primary);
-         }
-         .modal-body p:last-child {
+        }
+
+        #modalInfoContent.active, #modalHighlightsContent.active {
+            display: block; /* Show the active one */
+        }
+        #modalInfoContent p:last-child,
+        #modalHighlightsContent p:last-child {
              margin-bottom: 0;
          }
-         .modal-body strong {
+        #modalInfoContent strong {
             color: var(--lol-gold-primary);
             font-weight: 600;
          }
 
+         /* Specific styles for highlights/video */
+        #modalHighlightsContent {
+            /* Center content or adjust as needed */
+            display: flex; /* Use flex to center potentially */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #modalHighlightsContent iframe {
+            width: 100%;
+            max-width: 480px; /* Limit video width if needed */
+            aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
+            border: 1px solid var(--lol-gold-secondary); /* Optional border */
+            margin-top: 10px;
+        }
+         #modalHighlightsContent .no-video-message {
+             color: var(--lol-text-secondary);
+             font-style: italic;
+             margin-top: 20px;
+         }
 
     </style>
 </head>
@@ -347,7 +288,8 @@
         <div class="champion-section">
             <span class="section-label">Reworked</span>
             <div class="champion-icons">
-                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md">
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md" data-video-url="https://www.youtube.com/watch?v=zt9fyRin2wg">
+                 <!-- Add data-video-url="" or omit for others if no video yet -->
             </div>
         </div>
 
@@ -422,114 +364,126 @@
 
     </div> <!-- End lol-ui-container -->
 
-    <!-- Modal Structure (Initially Hidden) -->
+    <!-- Modal Structure (Modified) -->
     <div id="championModal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 id="modalChampionName">Champion Name</h3>
                 <button id="closeModalButton" class="modal-close-button">X</button>
             </div>
-            <div id="modalChampionInfo" class="modal-body">
-                <!-- Content will be loaded here -->
+
+            <!-- Options Buttons -->
+            <div class="modal-options">
+                <button id="infoButton" class="modal-choice-button">Info</button>
+                <button id="highlightsButton" class="modal-choice-button">Highlights</button>
             </div>
+
+            <!-- Content Area (for Info or Highlights) -->
+            <div class="modal-body-content">
+                 <div id="modalInfoContent">
+                    <!-- Markdown content will be loaded here -->
+                 </div>
+                 <div id="modalHighlightsContent">
+                    <!-- Video embed or message will be loaded here -->
+                 </div>
+            </div>
+
         </div>
     </div>
 
 
     <script>
-        // --- Copy Button Logic ---
+        // --- Copy Button Logic (Unchanged) ---
         function copyToClipboard(elementId) {
             const linkElement = document.getElementById(elementId);
             if (!linkElement) return;
             const textToCopy = linkElement.href;
-
             navigator.clipboard.writeText(textToCopy).then(() => {
                 const button = linkElement.parentElement.querySelector('.copy-button');
-                if(button){
-                     const originalText = button.textContent;
-                     button.textContent = 'Copied!';
-                     button.disabled = true;
-                     setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false;
-                     }, 1500); // Keep duration reasonable
-                }
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                 const button = linkElement.parentElement.querySelector('.copy-button');
-                 if(button){
-                     // Provide visual feedback on failure too
-                     const originalText = button.textContent;
-                     button.textContent = 'Failed';
-                     button.disabled = true; // Optional: disable briefly on fail
-                      setTimeout(() => {
-                        button.textContent = originalText;
-                        button.disabled = false; // Re-enable
-                     }, 1500);
-                 }
-            });
+                if(button){ const originalText = button.textContent; button.textContent = 'Copied!'; button.disabled = true; setTimeout(() => { button.textContent = originalText; button.disabled = false; }, 1500); }
+            }).catch(err => { console.error('Failed to copy text: ', err); const button = linkElement.parentElement.querySelector('.copy-button'); if(button){ const originalText = button.textContent; button.textContent = 'Failed'; button.disabled = true; setTimeout(() => { button.textContent = originalText; button.disabled = false; }, 1500); } });
         }
 
-        // --- Modal Logic ---
+        // --- Modal Logic (HEAVILY MODIFIED) ---
         const modalOverlay = document.getElementById('championModal');
         const modalChampionName = document.getElementById('modalChampionName');
-        const modalChampionInfo = document.getElementById('modalChampionInfo');
         const closeModalButton = document.getElementById('closeModalButton');
         const championImages = document.querySelectorAll('.champion-icons img');
 
-        // Basic Markdown to HTML conversion (Refined slightly)
+        // Modal Content Areas
+        const modalInfoContent = document.getElementById('modalInfoContent');
+        const modalHighlightsContent = document.getElementById('modalHighlightsContent');
+
+        // Modal Choice Buttons
+        const infoButton = document.getElementById('infoButton');
+        const highlightsButton = document.getElementById('highlightsButton');
+
+        // Basic Markdown to HTML conversion (Unchanged - Can keep your refined version)
         function markdownToHTML(markdownText) {
             let htmlText = markdownText;
-
-             // Convert line endings for consistency
-            htmlText = htmlText.replace(/\r\n/g, '\n');
-
-            // Headings (###, ##, #) - Process multiline correctly
+            htmlText = htmlText.replace(/\r\n/g, '\n'); // Normalize line endings
             htmlText = htmlText.replace(/^### (.*$)/gm, '<h3>$1</h3>');
             htmlText = htmlText.replace(/^## (.*$)/gm, '<h2>$1</h2>');
             htmlText = htmlText.replace(/^# (.*$)/gm, '<h1>$1</h1>');
-
-            // Bold and Italics (**bold**, *italic*) - Handle potential nesting/edge cases slightly better
             htmlText = htmlText.replace(/\*\*(?=\S)(.*?)(?<=\S)\*\*/g, '<strong>$1</strong>');
             htmlText = htmlText.replace(/\*(?=\S)(.*?)(?<=\S)\*/g, '<em>$1</em>');
-
-            // Unordered Lists (* list item) - More robust handling
-            // Process items first
-            htmlText = htmlText.replace(/^\* (.*(?:\n(?!\* ).*)*)/gm, (match, itemContent) => {
-                // Handle potential multiline list items (though simple conversion doesn't nest)
-                 return `<li>${itemContent.trim()}</li>\n`;
+            // Unordered Lists (* list item) - Improved handling
+             htmlText = htmlText.replace(/^\* (.*(?:\n(?!\* |\n).*)*)/gm, (match, itemContent) => {
+                 return `<li>${itemContent.trim().replace(/\n/g, '<br>')}</li>`; // Handle multi-line items within list item
              });
-             // Wrap consecutive LIs in UL
-             htmlText = htmlText.replace(/((?:<li>.*<\/li>\n)+)/g, '<ul>\n$1</ul>\n');
-
-
-            // Paragraphs (handle multiple blank lines, avoid wrapping lists/headings)
-            // Split into blocks by double newline, then wrap non-tag blocks in <p>
+            htmlText = htmlText.replace(/((?:<li>.*?<\/li>\s*)+)/g, '<ul>\n$1</ul>\n'); // Wrap consecutive LIs in UL more loosely
+             // Paragraphs - Split by double newline, wrap non-tags in <p>, handle single line breaks
             htmlText = htmlText.split('\n\n').map(paragraph => {
                 paragraph = paragraph.trim();
                 if (paragraph.length === 0) return '';
-                // Avoid wrapping if it already starts with a block tag (h, ul, li, p)
-                if (/^<(h[1-6]|ul|li|p|strong|em)/i.test(paragraph)) {
-                    return paragraph;
-                }
-                 // Wrap remaining lines in <p>, handling single line breaks within paragraph
-                 return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
-            }).join('\n\n'); // Re-join paragraphs
+                if (/^<(h[1-6]|ul|li|p|strong|em|iframe|video)/i.test(paragraph)) { return paragraph; } // Added iframe/video check
+                return `<p>${paragraph.replace(/\n/g, '<br>')}</p>`;
+            }).join('\n\n');
+             // Cleanup might need refinement based on actual MD content
+            htmlText = htmlText.replace(/<p><ul>/g, '<ul>').replace(/<\/ul><\/p>/g, '</ul>'); // Fix potential p wrapping lists
+            htmlText = htmlText.replace(/<p><(h[1-6])>/g, '<$1>').replace(/<\/(h[1-6])><\/p>/g, '</$1>'); // Fix potential p wrapping headers
+            htmlText = htmlText.replace(/<p>\s*<\/p>/g, ''); // Remove empty paragraphs
+             htmlText = htmlText.replace(/<\/ul>\n<ul>/g, ''); // Merge adjacent lists if separated only by whitespace/newlines
 
-            // Clean up any potential empty tags or extra newlines if necessary
-            htmlText = htmlText.replace(/<p><\/p>/g, '');
-            htmlText = htmlText.replace(/<ul>\n<\/ul>\n/g, '');
-
-
-            return htmlText;
+            return htmlText.trim(); // Trim final result
         }
 
 
-        // Function to open the modal
-        function openModal(championName, mdFile) {
-            modalChampionName.textContent = championName;
-            modalChampionInfo.innerHTML = `<p>Loading ${championName} information...</p>`;
-            modalOverlay.classList.add('active');
+        // Helper function to extract YouTube Video ID
+        function getYouTubeVideoId(url) {
+            if (!url) return null;
+            let videoId = null;
+            try {
+                const urlObj = new URL(url);
+                if (urlObj.hostname === 'youtu.be') {
+                    videoId = urlObj.pathname.slice(1);
+                } else if (urlObj.hostname.includes('youtube.com')) {
+                    videoId = urlObj.searchParams.get('v');
+                }
+            } catch (e) {
+                console.error("Invalid URL format:", url, e);
+                // Fallback for simple matching if URL object fails (e.g., no https://)
+                const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?#]+)/);
+                videoId = match ? match[1] : null;
+            }
+            return videoId;
+        }
+
+        // Function to show INFO content
+        function showInfoContent(mdFile, championName) {
+             // Set button states
+            infoButton.classList.add('active');
+            highlightsButton.classList.remove('active');
+
+            // Show/Hide content areas
+            modalInfoContent.style.display = 'block'; // Or use class 'active'
+            modalHighlightsContent.style.display = 'none';
+            modalInfoContent.innerHTML = `<p>Loading ${championName} info...</p>`; // Loading message
+
+            if (!mdFile) {
+                 modalInfoContent.innerHTML = `<p>No information file specified for ${championName}.</p>`;
+                 return;
+            }
 
             fetch(mdFile)
                 .then(response => {
@@ -540,33 +494,122 @@
                 })
                 .then(markdown => {
                     const htmlContent = markdownToHTML(markdown);
-                    modalChampionInfo.innerHTML = htmlContent;
+                    modalInfoContent.innerHTML = htmlContent;
                 })
                 .catch(error => {
                     console.error('Error fetching or processing markdown:', error);
-                    modalChampionInfo.innerHTML = `<p>Failed to load information for ${championName}. Please check the console for details.</p>`;
+                    modalInfoContent.innerHTML = `<p>Failed to load information for ${championName}. Check console.</p>`;
                 });
         }
 
-        // Function to close the modal
+        // Function to show HIGHLIGHTS content
+        function showHighlightsContent(videoUrl, championName) {
+            // Set button states
+            highlightsButton.classList.add('active');
+            infoButton.classList.remove('active');
+
+            // Show/Hide content areas
+            modalHighlightsContent.style.display = 'flex'; // Use flex for centering
+            modalInfoContent.style.display = 'none';
+            modalHighlightsContent.innerHTML = ''; // Clear previous content
+
+            const videoId = getYouTubeVideoId(videoUrl);
+
+            if (videoId) {
+                const iframe = document.createElement('iframe');
+                iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                iframe.title = `${championName} Highlights`;
+                iframe.frameBorder = "0";
+                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                iframe.allowFullscreen = true;
+                modalHighlightsContent.appendChild(iframe);
+            } else {
+                highlightsButton.disabled = true; // Keep disabled if no valid URL
+                modalHighlightsContent.innerHTML = `<p class="no-video-message">No highlights available for ${championName}.</p>`;
+            }
+        }
+
+        // Function to open the modal (MODIFIED)
+        function openModal(championName, mdFile, videoUrl) {
+            modalChampionName.textContent = championName;
+
+            // Clear previous content and states
+            modalInfoContent.innerHTML = '';
+            modalHighlightsContent.innerHTML = '';
+            modalInfoContent.style.display = 'none';
+            modalHighlightsContent.style.display = 'none'; // Use display none initially
+            infoButton.classList.remove('active');
+            highlightsButton.classList.remove('active');
+
+            // Store data on the modal or buttons for listeners to access
+            // Using dataset on the overlay is convenient
+            modalOverlay.dataset.mdFile = mdFile || ''; // Store empty string if null/undefined
+            modalOverlay.dataset.videoUrl = videoUrl || '';
+            modalOverlay.dataset.championName = championName;
+
+
+            // Enable/Disable Highlights button based on videoUrl
+            const videoId = getYouTubeVideoId(videoUrl);
+            highlightsButton.disabled = !videoId; // Disable if no valid video ID
+
+             // *** CHANGE: Default to showing Info tab automatically ***
+            showInfoContent(mdFile, championName); // Show info by default
+
+            // Make modal visible AFTER setup
+            modalOverlay.classList.add('active');
+        }
+
+        // Function to close the modal (MODIFIED)
         function closeModal() {
             modalOverlay.classList.remove('active');
+            // Stop video playback by removing iframe content
+            modalHighlightsContent.innerHTML = '';
+            // Clear info content too
+            modalInfoContent.innerHTML = '';
+            // Clear stored data
+            delete modalOverlay.dataset.mdFile;
+            delete modalOverlay.dataset.videoUrl;
+            delete modalOverlay.dataset.championName;
         }
+
+        // --- Event Listeners ---
 
         // Add event listeners to all champion images
         championImages.forEach(img => {
             img.addEventListener('click', () => {
                 const championName = img.getAttribute('alt');
                 const mdFile = img.getAttribute('data-md-file');
-                if (mdFile) { // Only open if md-file attribute exists
-                    openModal(championName, mdFile);
+                const videoUrl = img.getAttribute('data-video-url'); // Get video URL
+
+                // Only proceed if we have at least an mdFile or a videoUrl
+                if (mdFile || videoUrl) {
+                    openModal(championName, mdFile, videoUrl);
                 } else {
-                    console.warn(`No data-md-file specified for ${championName}`);
-                    // Optionally show a message in the UI or modal
-                    // openModal(championName, null); // Could adapt openModal to handle this
+                    console.warn(`No data-md-file or data-video-url specified for ${championName}`);
+                    // Optionally, open modal with an error message:
+                    // openModal(championName, null, null); // openModal handles nulls now
                 }
             });
         });
+
+        // Add event listener for the Info Button
+        infoButton.addEventListener('click', () => {
+            const mdFile = modalOverlay.dataset.mdFile;
+            const championName = modalOverlay.dataset.championName;
+             // Check if already active to prevent unnecessary reloads? Optional.
+            // if (infoButton.classList.contains('active')) return;
+            showInfoContent(mdFile, championName);
+        });
+
+        // Add event listener for the Highlights Button
+        highlightsButton.addEventListener('click', () => {
+            const videoUrl = modalOverlay.dataset.videoUrl;
+            const championName = modalOverlay.dataset.championName;
+             // Check if already active? Optional.
+            // if (highlightsButton.classList.contains('active')) return;
+            showHighlightsContent(videoUrl, championName);
+        });
+
 
         // Add event listener for the close button
         closeModalButton.addEventListener('click', closeModal);
