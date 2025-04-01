@@ -1,5 +1,5 @@
 ### Ezreal - The Prodigal Explorer - DanZ-AIO Features
-<img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_circle_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md">
+<img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_circle.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md">
 
 *   **Advanced Prediction System:** Utilizing both fast and advanced prediction modes for "Mystic Shot" (Q) based on target distance, enhancing accuracy in various situations.
 *   **Smart "Essence Flux" (W) Usage:**  Prioritizing W on marked targets and offering conditional usage based on Q hit probability and auto-attack range.
