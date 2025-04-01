@@ -248,7 +248,7 @@
             display: block; /* Show the active one */
         }
         #modalInfoContent p:last-child,
-        #modalHighlightsContent p:last-child {
+        #modalHighlightsContent p:last-child { /* Applies to the 'no video' message */
              margin-bottom: 0;
          }
         #modalInfoContent strong {
@@ -258,23 +258,23 @@
 
          /* Specific styles for highlights/video */
         #modalHighlightsContent {
-            /* Center content or adjust as needed */
-            display: flex; /* Use flex to center potentially */
-            flex-direction: column;
-            align-items: center;
+            /* display: block is fine now, vertical layout by default */
         }
 
-        #modalHighlightsContent iframe {
+        #modalHighlightsContent iframe,
+        #modalHighlightsContent video { /* Style both iframe and video */
+            display: block; /* Ensure they are block-level */
             width: 100%;
-            max-width: 480px; /* Limit video width if needed */
+            max-width: 480px; /* Limit video width */
             aspect-ratio: 16 / 9; /* Maintain video aspect ratio */
             border: 1px solid var(--lol-gold-secondary); /* Optional border */
-            margin-top: 10px;
+            margin: 0 auto 15px auto; /* Center horizontally, add 15px bottom margin */
         }
          #modalHighlightsContent .no-video-message {
              color: var(--lol-text-secondary);
              font-style: italic;
              margin-top: 20px;
+             text-align: center; /* Center the message */
          }
 
     </style>
@@ -288,8 +288,8 @@
         <div class="champion-section">
             <span class="section-label">Reworked</span>
             <div class="champion-icons">
-                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md" data-video-url="https://www.youtube.com/watch?v=zt9fyRin2wg">
-                 <!-- Add data-video-url="" or omit for others if no video yet -->
+                <!-- UPDATED Ezreal video URLs (comma-separated) -->
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/ezreal/hud/ezreal_square_0.png" alt="Ezreal" title="Ezreal" data-md-file="ezreal.md" data-video-url="https://www.youtube.com/watch?v=hp9sbH78sdg,https://www.youtube.com/watch?v=3Io-APz34XQ&t=15s">
             </div>
         </div>
 
@@ -300,9 +300,12 @@
             <span class="section-label">New</span>
             <div class="champion-icons">
                 <img src="https://raw.communitydragon.org/latest/game/assets/characters/milio/hud/milio_square_0.png" alt="Milio" title="Milio" data-md-file="milio.md">
-                <img src="https://raw.communitydragon.org/latest/game/assets/characters/mel/hud/mel_square_0.mel.png" alt="Mel" title="Mel" data-md-file="Mel.md">
-                <img src="https://raw.communitydragon.org/latest/game/assets/characters/zeri/hud/zeri_square_0.png" alt="Zeri" title="Zeri" data-md-file="zeri.md">
-                <img src="https://raw.communitydragon.org/latest/game/assets/characters/caitlyn/hud/caitlyn_square_0.png" alt="Caitlyn" title="Caitlyn" data-md-file="caitlyn.md">
+                <!-- ADDED Mel video URLs (comma-separated) -->
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/mel/hud/mel_square_0.mel.png" alt="Mel" title="Mel" data-md-file="Mel.md" data-video-url="https://www.youtube.com/watch?v=x-ey9WpGG5c">
+                <!-- ADDED Zeri video URL (Note: non-YouTube link) -->
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/zeri/hud/zeri_square_0.png" alt="Zeri" title="Zeri" data-md-file="zeri.md" data-video-url="https://files.catbox.moe/9gbape.mp4">
+                <!-- ADDED Caitlyn video URLs (comma-separated) -->
+                <img src="https://raw.communitydragon.org/latest/game/assets/characters/caitlyn/hud/caitlyn_square_0.png" alt="Caitlyn" title="Caitlyn" data-md-file="caitlyn.md" data-video-url="https://www.youtube.com/watch?v=e87zjWatPk0,https://www.youtube.com/watch?v=31cS69c2JAc">
                  <img src="https://raw.communitydragon.org/latest/game/assets/characters/cassiopeia/hud/cassiopeia_square_0.png" alt="Cassiopeia" title="Cassiopeia" data-md-file="cassiopeia.md">
             </div>
         </div>
@@ -384,7 +387,7 @@
                     <!-- Markdown content will be loaded here -->
                  </div>
                  <div id="modalHighlightsContent">
-                    <!-- Video embed or message will be loaded here -->
+                    <!-- Video embeds or message will be loaded here -->
                  </div>
             </div>
 
@@ -404,7 +407,7 @@
             }).catch(err => { console.error('Failed to copy text: ', err); const button = linkElement.parentElement.querySelector('.copy-button'); if(button){ const originalText = button.textContent; button.textContent = 'Failed'; button.disabled = true; setTimeout(() => { button.textContent = originalText; button.disabled = false; }, 1500); } });
         }
 
-        // --- Modal Logic (HEAVILY MODIFIED) ---
+        // --- Modal Logic ---
         const modalOverlay = document.getElementById('championModal');
         const modalChampionName = document.getElementById('modalChampionName');
         const closeModalButton = document.getElementById('closeModalButton');
@@ -418,7 +421,7 @@
         const infoButton = document.getElementById('infoButton');
         const highlightsButton = document.getElementById('highlightsButton');
 
-        // Basic Markdown to HTML conversion (Unchanged - Can keep your refined version)
+        // Basic Markdown to HTML conversion (Unchanged)
         function markdownToHTML(markdownText) {
             let htmlText = markdownText;
             htmlText = htmlText.replace(/\r\n/g, '\n'); // Normalize line endings
@@ -449,36 +452,46 @@
         }
 
 
-        // Helper function to extract YouTube Video ID
+        // Helper function to extract YouTube Video ID (Unchanged)
         function getYouTubeVideoId(url) {
             if (!url) return null;
             let videoId = null;
             try {
-                const urlObj = new URL(url);
-                if (urlObj.hostname === 'youtu.be') {
+                let fullUrl = url;
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    fullUrl = 'https://' + url; // Assume HTTPS if protocol missing
+                }
+                const urlObj = new URL(fullUrl);
+                 if (urlObj.hostname === 'youtu.be') {
                     videoId = urlObj.pathname.slice(1);
                 } else if (urlObj.hostname.includes('youtube.com')) {
                     videoId = urlObj.searchParams.get('v');
-                }
+                 }
+                 // Check for shorts URL format
+                 else if (urlObj.hostname.includes('youtube.com') && urlObj.pathname.includes('/shorts/')) {
+                     videoId = urlObj.pathname.split('/shorts/')[1];
+                 }
             } catch (e) {
-                console.error("Invalid URL format:", url, e);
-                // Fallback for simple matching if URL object fails (e.g., no https://)
-                const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?#]+)/);
+                console.warn("Could not parse URL with URL constructor, attempting regex:", url, e);
+                // Fallback regex adjusted
+                const match = url.match(/(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([^&?#\/\s]+)/);
                 videoId = match ? match[1] : null;
             }
+            // Remove potential timestamp parameters from videoId
+            if (videoId) {
+                 videoId = videoId.split('&')[0].split('?')[0]; // More robust cleaning
+             }
             return videoId;
         }
 
-        // Function to show INFO content
+        // Function to show INFO content (Unchanged from previous version)
         function showInfoContent(mdFile, championName) {
-             // Set button states
-            infoButton.classList.add('active');
+             infoButton.classList.add('active');
             highlightsButton.classList.remove('active');
-
-            // Show/Hide content areas
-            modalInfoContent.style.display = 'block'; // Or use class 'active'
+            modalInfoContent.style.display = 'block';
             modalHighlightsContent.style.display = 'none';
-            modalInfoContent.innerHTML = `<p>Loading ${championName} info...</p>`; // Loading message
+            modalHighlightsContent.innerHTML = ''; // Clear highlights when switching to info
+            modalInfoContent.innerHTML = `<p>Loading ${championName} info...</p>`;
 
             if (!mdFile) {
                  modalInfoContent.innerHTML = `<p>No information file specified for ${championName}.</p>`;
@@ -502,71 +515,114 @@
                 });
         }
 
-        // Function to show HIGHLIGHTS content
-        function showHighlightsContent(videoUrl, championName) {
-            // Set button states
+        // Function to show HIGHLIGHTS content (MODIFIED FOR MULTIPLE VIDEOS)
+        function showHighlightsContent(videoUrlString, championName) {
             highlightsButton.classList.add('active');
             infoButton.classList.remove('active');
-
-            // Show/Hide content areas
-            modalHighlightsContent.style.display = 'flex'; // Use flex for centering
+            modalHighlightsContent.style.display = 'block'; // Use block display
             modalInfoContent.style.display = 'none';
             modalHighlightsContent.innerHTML = ''; // Clear previous content
 
-            const videoId = getYouTubeVideoId(videoUrl);
-
-            if (videoId) {
-                const iframe = document.createElement('iframe');
-                iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                iframe.title = `${championName} Highlights`;
-                iframe.frameBorder = "0";
-                iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-                iframe.allowFullscreen = true;
-                modalHighlightsContent.appendChild(iframe);
-            } else {
-                highlightsButton.disabled = true; // Keep disabled if no valid URL
+            if (!videoUrlString) {
                 modalHighlightsContent.innerHTML = `<p class="no-video-message">No highlights available for ${championName}.</p>`;
+                highlightsButton.disabled = true; // Ensure button is disabled if string was empty initially
+                return;
             }
+
+            const videoUrls = videoUrlString.split(',') // Split the string by comma
+                                        .map(url => url.trim()) // Trim whitespace from each URL
+                                        .filter(url => url); // Remove any empty strings
+
+            if (videoUrls.length === 0) {
+                 modalHighlightsContent.innerHTML = `<p class="no-video-message">No valid highlight URLs found for ${championName}.</p>`;
+                 highlightsButton.disabled = true;
+                 return;
+            }
+
+            let videoAdded = false; // Flag to check if at least one video was added
+
+            videoUrls.forEach(url => {
+                const videoId = getYouTubeVideoId(url);
+                let videoElement = null;
+
+                if (videoId) { // It's a YouTube video
+                    videoElement = document.createElement('iframe');
+                    videoElement.src = `https://www.youtube.com/embed/${videoId}`;
+                    videoElement.title = `${championName} Highlight`; // Generic title per video
+                    videoElement.frameBorder = "0";
+                    videoElement.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+                    videoElement.allowFullscreen = true;
+
+                } else if (url.toLowerCase().endsWith('.mp4')) { // It's an MP4 video
+                    videoElement = document.createElement('video');
+                    videoElement.src = url;
+                    videoElement.controls = true;
+                    videoElement.title = `${championName} Highlight`;
+
+                     // Optional: Add a source element
+                     // const source = document.createElement('source');
+                     // source.src = url;
+                     // source.type = 'video/mp4';
+                     // videoElement.appendChild(source);
+                     // videoElement.appendChild(document.createTextNode(`Your browser does not support the video tag.`));
+                } else {
+                    console.warn(`Unsupported video URL format skipped: ${url} for ${championName}`);
+                }
+
+                // If a valid video element was created, add styles and append it
+                if (videoElement) {
+                    // Styles moved to CSS, but could add margin here if preferred:
+                    // videoElement.style.marginBottom = '15px';
+                    modalHighlightsContent.appendChild(videoElement);
+                    videoAdded = true; // Mark that we added at least one video
+                }
+            }); // End forEach loop
+
+            // If after checking all URLs, none were valid/added
+            if (!videoAdded) {
+                 modalHighlightsContent.innerHTML = `<p class="no-video-message">No supported highlights could be loaded for ${championName}.</p>`;
+            }
+
+            // Ensure button is enabled if we started with URLs, even if none loaded (user might fix URL later)
+             highlightsButton.disabled = false;
+
         }
 
-        // Function to open the modal (MODIFIED)
-        function openModal(championName, mdFile, videoUrl) {
+        // Function to open the modal (MODIFIED FOR MULTIPLE VIDEOS)
+        function openModal(championName, mdFile, videoUrlString) { // Renamed variable for clarity
             modalChampionName.textContent = championName;
 
             // Clear previous content and states
             modalInfoContent.innerHTML = '';
             modalHighlightsContent.innerHTML = '';
             modalInfoContent.style.display = 'none';
-            modalHighlightsContent.style.display = 'none'; // Use display none initially
+            modalHighlightsContent.style.display = 'none';
             infoButton.classList.remove('active');
             highlightsButton.classList.remove('active');
 
-            // Store data on the modal or buttons for listeners to access
-            // Using dataset on the overlay is convenient
-            modalOverlay.dataset.mdFile = mdFile || ''; // Store empty string if null/undefined
-            modalOverlay.dataset.videoUrl = videoUrl || '';
+            // Store data
+            modalOverlay.dataset.mdFile = mdFile || '';
+            modalOverlay.dataset.videoUrl = videoUrlString || ''; // Store the full string
             modalOverlay.dataset.championName = championName;
 
+            // Enable/Disable Highlights button based *only* on the presence of the videoUrlString
+            // The showHighlightsContent function will handle empty or invalid URLs within the string
+            highlightsButton.disabled = !videoUrlString;
 
-            // Enable/Disable Highlights button based on videoUrl
-            const videoId = getYouTubeVideoId(videoUrl);
-            highlightsButton.disabled = !videoId; // Disable if no valid video ID
+            // Default to showing Info tab
+            showInfoContent(mdFile, championName);
 
-             // *** CHANGE: Default to showing Info tab automatically ***
-            showInfoContent(mdFile, championName); // Show info by default
-
-            // Make modal visible AFTER setup
+            // Make modal visible
             modalOverlay.classList.add('active');
         }
 
-        // Function to close the modal (MODIFIED)
+        // Function to close the modal (MODIFIED - stop all videos)
         function closeModal() {
             modalOverlay.classList.remove('active');
-            // Stop video playback by removing iframe content
+             // Stop video playback: Clear container which removes iframes/videos
             modalHighlightsContent.innerHTML = '';
-            // Clear info content too
             modalInfoContent.innerHTML = '';
-            // Clear stored data
+             // Clear stored data
             delete modalOverlay.dataset.mdFile;
             delete modalOverlay.dataset.videoUrl;
             delete modalOverlay.dataset.championName;
@@ -574,54 +630,45 @@
 
         // --- Event Listeners ---
 
-        // Add event listeners to all champion images
+        // Add event listeners to all champion images (Unchanged logic)
         championImages.forEach(img => {
             img.addEventListener('click', () => {
                 const championName = img.getAttribute('alt');
                 const mdFile = img.getAttribute('data-md-file');
-                const videoUrl = img.getAttribute('data-video-url'); // Get video URL
+                const videoUrlString = img.getAttribute('data-video-url'); // Get the potentially comma-separated string
 
-                // Only proceed if we have at least an mdFile or a videoUrl
-                if (mdFile || videoUrl) {
-                    openModal(championName, mdFile, videoUrl);
-                } else {
-                    console.warn(`No data-md-file or data-video-url specified for ${championName}`);
-                    // Optionally, open modal with an error message:
-                    // openModal(championName, null, null); // openModal handles nulls now
-                }
+                openModal(championName, mdFile, videoUrlString); // Pass the full string
             });
         });
 
-        // Add event listener for the Info Button
+        // Add event listener for the Info Button (Unchanged logic)
         infoButton.addEventListener('click', () => {
+            if (infoButton.classList.contains('active')) return;
             const mdFile = modalOverlay.dataset.mdFile;
             const championName = modalOverlay.dataset.championName;
-             // Check if already active to prevent unnecessary reloads? Optional.
-            // if (infoButton.classList.contains('active')) return;
             showInfoContent(mdFile, championName);
         });
 
-        // Add event listener for the Highlights Button
+        // Add event listener for the Highlights Button (Unchanged logic)
         highlightsButton.addEventListener('click', () => {
-            const videoUrl = modalOverlay.dataset.videoUrl;
+            if (highlightsButton.classList.contains('active') || highlightsButton.disabled) return;
+            const videoUrlString = modalOverlay.dataset.videoUrl;
             const championName = modalOverlay.dataset.championName;
-             // Check if already active? Optional.
-            // if (highlightsButton.classList.contains('active')) return;
-            showHighlightsContent(videoUrl, championName);
+            showHighlightsContent(videoUrlString, championName); // Pass the full string
         });
 
 
-        // Add event listener for the close button
+        // Add event listener for the close button (Unchanged)
         closeModalButton.addEventListener('click', closeModal);
 
-        // Add event listener to close modal if clicking on the overlay background
+        // Add event listener to close modal if clicking on the overlay background (Unchanged)
         modalOverlay.addEventListener('click', (event) => {
             if (event.target === modalOverlay) {
                 closeModal();
             }
         });
 
-        // Optional: Close modal on 'Escape' key press
+        // Optional: Close modal on 'Escape' key press (Unchanged)
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
                 closeModal();
