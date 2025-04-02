@@ -9,7 +9,6 @@
 *   **Farm and Jungle Clear:**  Automated farming with Q, with customizable modes (Last Hit, Full Clear, Off) and mana management, and jungle clearing with Q and W.
 *   **Kill Steal Module:**  Securing kills with Q, W, and R when enemies are within lethal range.
 *   **Extensive Drawing Options:**  Comprehensive range indicators, prediction lines, damage indicators, and status overlays for enhanced visual feedback.
----
 ## Ability Breakdown & Settings
 ### Q - Mystic Shot
 *   **Farm Under Turret:** [Toggle - ON by default]
@@ -22,7 +21,6 @@
     *   Sets the maximum casting range for Mystic Shot (Q). Adjust this to control the distance at which Q will be cast.
 *   **Advanced Prediction Distance:** [Slider - 700, Range 200-1200, Step 50]
     *   Determines the distance threshold for switching between fast and advanced prediction modes for Q. Targets closer than this distance use fast prediction.
----
 ### W - Essence Flux
 Ezreal's W offers poke and damage amplification. DanZ-AIO manages its usage for optimal effect:
 *   **Use on Towers:** [Toggle - ON by default]
@@ -35,7 +33,6 @@ Ezreal's W offers poke and damage amplification. DanZ-AIO manages its usage for 
     *   Sets the maximum casting range for Essence Flux (W).
 *   **Prioritize W Marked Targets in Combo:** [Toggle - ON by default]
     *   In combo mode, if a target is marked by your W, it will be prioritized for spell casts, maximizing damage output.
----
 ### E - Arcane Shift
 Ezreal's mobility tool, used defensively in DanZ-AIO:
 *   **Use E against gap closers:** [Toggle - ON by default]
@@ -46,7 +43,6 @@ Ezreal's mobility tool, used defensively in DanZ-AIO:
     *   When using E defensively, attempts to shift towards the nearest ally, potentially for safer positioning.
 *   **Prevent E under turret:** [Toggle - ON by default]
     *   Disables E casting if the target destination is under an enemy turret, preventing risky escapes.
----
 ### R - Trueshot Barrage
 Ezreal's ultimate for long-range damage and kill secures. DanZ-AIO offers multiple usage modes:
 *   **Don't R Under Turret:** [Toggle - ON by default]
@@ -64,7 +60,6 @@ Ezreal's ultimate for long-range damage and kill secures. DanZ-AIO offers multip
     *   Hold this key to manually cast R at the targeted enemy. Useful for manual aiming and long-range snipes.
 *   **Only R If Target Out of Q/AA Range:** [Toggle - ON by default]
     *   When enabled, R will only be cast automatically if the target is outside of both your Q and auto-attack range, ensuring you're not wasting R when other spells are more effective.
----
 ### Combo Settings
 Settings to control Ezreal's behavior in combo mode (when the combo key is pressed):
 *   **Smart AA Weaving:** [Toggle - ON by default]
@@ -89,7 +84,6 @@ Settings for Ezreal's harass behavior in lane (when the harass key is pressed):
     *   Enables "Essence Flux" (W) usage in harass mode for poke and damage amplification.
 *   **Minimum Mana %:** [Slider - 40%, Range 0-100%, Step 5]
     *   Sets the minimum mana percentage required for Ezreal to use spells in harass mode, helping manage mana during laning.
----
 ## Farm Settings
 Settings to control Ezreal's farming behavior:
 *   **Use Q:** [Toggle - ON by default]
@@ -104,14 +98,12 @@ Settings to control Ezreal's farming behavior:
     *   **Full Clear:** Q is used to clear minion waves as quickly as possible.
 *   **Toggle Q Farm Mode:** [Keybind - MMB (Middle Mouse Button) by default, Toggle]
     *   Toggles through the Q Farm Modes (Off -> Last Hit -> Full Clear -> Off...).
----
 ## Jungle Settings
 Settings for clearing jungle camps:
 *   **Use Q:** [Toggle - ON by default]
     *   Enables "Mystic Shot" (Q) usage for clearing jungle monsters.
 *   **Use W on Monsters:** [Toggle - ON by default]
     *   Enables "Essence Flux" (W) usage on jungle monsters, especially Baron and Dragon, for faster clearing.
----
 ## Kill Steal Settings
 Settings for securing kills on low-health enemy champions:
 *   **Enable Kill Steal:** [Toggle - ON by default]
@@ -122,10 +114,8 @@ Settings for securing kills on low-health enemy champions:
     *   Allows "Essence Flux" (W) to be used for kill stealing.
 *   **Use R:** [Toggle - OFF by default]
     *   Allows "Trueshot Barrage" (R) to be used for kill stealing, especially on distant targets.
----
 ## Draw Settings
 Settings to customize visual drawings from the script:
-
 *   **Enable Drawings:** [Toggle - ON by default]
     *   Master toggle to enable or disable all drawings from the script.
     ### Range Drawings
@@ -163,7 +153,6 @@ Settings to customize visual drawings from the script:
         *   Sets the color for the Auto Q status overlay text.
     *   **Show Combo Mode:** [Toggle - ON by default]
         *   Displays an overlay showing the current combo mode status and relevant information.
----
 ## Damage Drawing
 Settings to display damage indicators on enemies:
 *   **Show Q Damage:** [Toggle - ON by default]
@@ -176,4 +165,3 @@ Settings to display damage indicators on enemies:
     *   Enables damage indicators displaying potential "Trueshot Barrage" (R) damage.
 *   **Number of AAs in Damage Calc:** [Slider - 2, Range 0-5, Step 1]
     *   Sets the number of auto-attacks to consider when calculating total damage in the damage indicators. This helps estimate damage over a short period including auto-attacks.
----
